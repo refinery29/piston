@@ -1,13 +1,8 @@
-<?php namespace Refinery29\Piston\Routes;
+<?php
+
+namespace Refinery29\Piston\Routes;
 
 use Refinery29\Piston\Hooks\Hookable;
-
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/4/15
- * Time: 2:04 PM
- */
 
 class Route
 {
@@ -28,26 +23,6 @@ class Route
         $this->action = $action;
     }
 
-    static public function get($alias, $action, $is_paginated = false)
-    {
-        return new static('GET', $alias, $action, $is_paginated);
-    }
-
-    static public function post($alias, $action)
-    {
-        return new static('POST', $alias, $action, false);
-    }
-
-    static public function delete($alias, $action)
-    {
-        return new static('DELETE', $alias, $action, false);
-    }
-
-    static public function put($alias, $action)
-    {
-        return new static('PUT', $alias, $action, false);
-    }
-
     private function validateVerb($verb)
     {
         if (!in_array($verb, $this->acceptable_verbs)) {
@@ -55,6 +30,26 @@ class Route
         }
 
         $this->verb = $verb;
+    }
+
+    public static function get($alias, $action, $is_paginated = false)
+    {
+        return new static('GET', $alias, $action, $is_paginated);
+    }
+
+    public static function post($alias, $action)
+    {
+        return new static('POST', $alias, $action, false);
+    }
+
+    public static function delete($alias, $action)
+    {
+        return new static('DELETE', $alias, $action, false);
+    }
+
+    public static function put($alias, $action)
+    {
+        return new static('PUT', $alias, $action, false);
     }
 
     /**

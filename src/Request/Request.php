@@ -1,10 +1,6 @@
-<?php namespace Refinery29\Piston\Request;
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/17/15
- * Time: 3:28 PM
- */
+<?php
+
+namespace Refinery29\Piston\Request;
 
 use Symfony\Component\HttpFoundation\Request as SRequest;
 
@@ -19,14 +15,38 @@ class Request extends SRequest
         return $this->pagination_cursor;
     }
 
+    /**
+     * @param null $pagination_cursor
+     */
+    public function setPaginationCursor($pagination_cursor)
+    {
+        $this->pagination_cursor = $pagination_cursor;
+    }
+
     public function getRequestedFields()
     {
         return $this->requested_fields;
     }
 
+    /**
+     * @param null $requested_fields
+     */
+    public function setRequestedFields($requested_fields)
+    {
+        $this->requested_fields = $requested_fields;
+    }
+
     public function getIncludedResources()
     {
         return $this->included_resources;
+    }
+
+    /**
+     * @param null $included_resources
+     */
+    public function setIncludedResources($included_resources)
+    {
+        $this->included_resources = $included_resources;
     }
 
     public function isPaginated()
@@ -42,29 +62,5 @@ class Request extends SRequest
     public function requestsSpecificFields()
     {
         return !is_null($this->requested_fields);
-    }
-
-    /**
-     * @param null $requested_fields
-     */
-    public function setRequestedFields($requested_fields)
-    {
-        $this->requested_fields = $requested_fields;
-    }
-
-    /**
-     * @param null $pagination_cursor
-     */
-    public function setPaginationCursor($pagination_cursor)
-    {
-        $this->pagination_cursor = $pagination_cursor;
-    }
-
-    /**
-     * @param null $included_resources
-     */
-    public function setIncludedResources($included_resources)
-    {
-        $this->included_resources = $included_resources;
     }
 }

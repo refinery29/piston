@@ -1,4 +1,6 @@
-<?php namespace Refinery29\Piston;
+<?php
+
+namespace Refinery29\Piston;
 
 use Dotenv\Dotenv;
 use League\Container\Container;
@@ -11,19 +13,12 @@ use Refinery29\Piston\Hooks\Worker;
 use Refinery29\Piston\Request\Filters\Fields;
 use Refinery29\Piston\Request\Filters\IncludedResource;
 use Refinery29\Piston\Request\Filters\Pagination;
+use Refinery29\Piston\Request\Request as PistonRequest;
 use Refinery29\Piston\Routes\Route;
 use Refinery29\Piston\ServiceProviders\SpotDbProvider;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Refinery29\Piston\Request\Request as PistonRequest;
 
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/4/15
- * Time: 1:37 PM
- */
 class Piston
 {
     use Hookable;
@@ -42,8 +37,7 @@ class Piston
      * @var PistonRequest
      */
     protected $request;
-
-
+    
     public function __construct(ContainerInterface $container = null, $config_dir)
     {
         $this->container = $container ?: new Container();
@@ -65,7 +59,7 @@ class Piston
 
     public function getRequest()
     {
-        $request =  $this->request ?: PistonRequest::createFromGlobals();
+        $request = $this->request ?: PistonRequest::createFromGlobals();
 
         $request = Pagination::apply($request);
         $request = IncludedResource::apply($request);
@@ -74,7 +68,6 @@ class Piston
         $this->container->add('Symfony\Component\HttpFoundation\Request', $request, true);
 
         return $request;
-
     }
 
     public function addRoute(Route $route)

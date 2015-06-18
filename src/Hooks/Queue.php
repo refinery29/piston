@@ -3,13 +3,6 @@
 use Closure;
 use InvalidArgumentException;
 
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/10/15
- * Time: 5:44 PM
- */
-
 class Queue
 {
     /**
@@ -19,6 +12,7 @@ class Queue
 
     /**
      * @param \Closure|Hook
+     *
      * @return $this
      */
     public function addHook($hook)
@@ -26,6 +20,7 @@ class Queue
         $this->validateHook($hook);
 
         $this->hooks[] = $hook;
+
         return $this;
     }
 
@@ -40,6 +35,7 @@ class Queue
     /**
      * @param \Closure|Hook
      * @param $position
+     *
      * @return $this
      */
     public function insertHook($hook, $position)
@@ -52,6 +48,7 @@ class Queue
 
     /**
      * @param $hook
+     *
      * @throws InvalidArgumentException
      */
     private function validateHook($hook)
