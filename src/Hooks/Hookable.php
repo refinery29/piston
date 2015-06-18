@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/17/15
- * Time: 2:58 PM
- */
 
 namespace Refinery29\Piston\Hooks;
 
-
+use Closure;
 use InvalidArgumentException;
 
 trait Hookable
@@ -23,6 +17,11 @@ trait Hookable
      */
     protected $post_hooks = null;
 
+    /**
+     * @param Closure|Hook $hook
+     *
+     * @return $this
+     */
     public function addPreHook($hook)
     {
         $this->bootstrapHooks();
@@ -33,6 +32,11 @@ trait Hookable
         return $this;
     }
 
+    /**
+     * @param Closure|Hook $hook
+     *
+     * @return $this
+     */
     public function addPostHook($hook)
     {
         $this->bootstrapHooks();
@@ -43,19 +47,28 @@ trait Hookable
         return $this;
     }
 
+    /**
+     * @param mixed $hook
+     */
     private function validateHook($hook)
     {
-        if (!($hook instanceof \Closure) && !($hook instanceof Hook)) {
+        if (!($hook instanceof Closure) && !($hook instanceof Hook)) {
             throw new InvalidArgumentException('You may only use closures and Refinery29/Piston/Hooks/Hook as a Hook');
         }
     }
 
+    /**
+     * @return Queue
+     */
     public function getPreHooks()
     {
         $this->bootstrapHooks();
         return $this->pre_hooks;
     }
 
+    /**
+     * @return Queue
+     */
     public function getPostHooks()
     {
         $this->bootstrapHooks();

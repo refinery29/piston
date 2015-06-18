@@ -9,7 +9,7 @@ Micro Framework for APIs
 ```
 $application = new Application();
 
-$application->AddRoute(Route::get('jedi/{id}', 'JediController::useTheForce'));
+$application->addRoute(Route::get('jedi/{id}', 'JediController::useTheForce'));
 
 ```
 
@@ -18,7 +18,7 @@ $application->AddRoute(Route::get('jedi/{id}', 'JediController::useTheForce'));
 ```
 $application = new Application();
 
-$application->AddRoute(Route::get('jedi/{id}', function(Request $request, Response $response)
+$application->addRoute(Route::get('jedi/{id}', function(Request $request, Response $response)
 {
     //do some cool stuff here
     return $response;

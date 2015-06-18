@@ -18,12 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Refinery29\Piston\Request\Request as PistonRequest;
 
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/4/15
- * Time: 1:37 PM
- */
 class Piston
 {
     use Hookable;
@@ -44,6 +38,10 @@ class Piston
     protected $request;
 
 
+    /**
+     * @param ContainerInterface $container
+     * @param string             $config_dir
+     */
     public function __construct(ContainerInterface $container = null, $config_dir)
     {
         $this->container = $container ?: new Container();
@@ -58,11 +56,17 @@ class Piston
         $this->container->add('app', $this);
     }
 
+    /**
+     * @param PistonRequest $request
+     */
     public function setRequest(PistonRequest $request)
     {
         $this->request = $request;
     }
 
+    /**
+     * @return PistonRequest|Request
+     */
     public function getRequest()
     {
         $request =  $this->request ?: PistonRequest::createFromGlobals();
@@ -77,11 +81,17 @@ class Piston
 
     }
 
+    /**
+     * @param Route $route
+     */
     public function addRoute(Route $route)
     {
         $this->router->addRoute($route->getVerb(), $route->getAlias(), $route->getAction());
     }
 
+    /**
+     * @return Response
+     */
     public function launch()
     {
         $dispatcher = $this->router->getDispatcher();
@@ -97,11 +107,17 @@ class Piston
         return $response->send();
     }
 
+    /**
+     * @param ServiceProvider $service_provider
+     */
     public function addServiceProvider(ServiceProvider $service_provider)
     {
         $this->container->addServiceProvider($service_provider);
     }
 
+    /**
+     * @return Container
+     */
     public function getContainer()
     {
         return $this->container;
@@ -118,17 +134,28 @@ class Piston
         $this->container->addServiceProvider(new SpotDbProvider());
     }
 
+    /**
+     * @param string $config_dir
+     */
     private function loadConfig($config_dir)
     {
         $env = new Dotenv($config_dir);
         $env->load();
     }
 
+    /**
+     * @return Response
+     */
     public function notFound()
     {
         return new Response('', 404);
     }
 
+    /**
+     * @param string $url
+     *
+     * @return RedirectResponse
+     */
     public function redirect($url)
     {
         return new RedirectResponse($url);
