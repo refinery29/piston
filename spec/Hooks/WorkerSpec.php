@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class WorkerSpec extends ObjectBehavior
 {
-    function it_can_work_a_queue(Queue $queue, Request $req, Response $resp, Hook $hook)
+    public function it_can_work_a_queue(Queue $queue, Request $req, Response $resp, Hook $hook)
     {
         $hook->apply($req, $resp)->willReturn($resp);
 

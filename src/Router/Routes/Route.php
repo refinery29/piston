@@ -63,7 +63,7 @@ class Route
      * @param bool $is_paginated
      * @return static
      */
-    static public function get($alias, $action, $is_paginated = false)
+    public static function get($alias, $action, $is_paginated = false)
     {
         return new static('GET', $alias, $action, $is_paginated);
     }
@@ -73,7 +73,7 @@ class Route
      * @param $action
      * @return static
      */
-    static public function post($alias, $action)
+    public static function post($alias, $action)
     {
         return new static('POST', $alias, $action, false);
     }
@@ -83,7 +83,7 @@ class Route
      * @param $action
      * @return static
      */
-    static public function delete($alias, $action)
+    public static function delete($alias, $action)
     {
         return new static('DELETE', $alias, $action, false);
     }
@@ -93,7 +93,7 @@ class Route
      * @param $action
      * @return static
      */
-    static public function put($alias, $action)
+    public static function put($alias, $action)
     {
         return new static('PUT', $alias, $action, false);
     }

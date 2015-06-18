@@ -8,7 +8,7 @@ class Pagination implements Filter
      * @param Request $request
      * @return Request
      */
-    static public function apply(Request $request)
+    public static function apply(Request $request)
     {
         $cursor = $request->get('cursor');
 

@@ -16,7 +16,7 @@ class PistonStrategy implements StrategyInterface
     /**
      * @param $container
      */
-    function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }
@@ -51,7 +51,6 @@ class PistonStrategy implements StrategyInterface
         }
 
         return $this->dispatchController($action, $vars);
-
     }
 
     /**
@@ -85,7 +84,6 @@ class PistonStrategy implements StrategyInterface
         } else {
             return $action;
         }
-
     }
 
     /**

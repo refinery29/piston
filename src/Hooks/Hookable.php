@@ -1,6 +1,5 @@
 <?php namespace Refinery29\Piston\Hooks;
 
-
 use InvalidArgumentException;
 
 /**

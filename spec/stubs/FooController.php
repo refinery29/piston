@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class FooController implements Routeable
 {
-    function fooAction(Request $req, Response $resp)
+    public function fooAction(Request $req, Response $resp)
     {
         return $resp;
     }
