@@ -8,7 +8,6 @@ use Refinery29\Piston\Hooks\Hookable;
  */
 class RouteGroup
 {
-
     /**
      * @var array
      */

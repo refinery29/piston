@@ -7,17 +7,17 @@ use Prophecy\Argument;
 
 class QueueSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Refinery29\Piston\Hooks\Queue');
     }
 
-    function it_can_get_hooks()
+    public function it_can_get_hooks()
     {
         $this->getHooks()->shouldReturn([]);
     }
 
-    function it_can_add_a_hook()
+    public function it_can_add_a_hook()
     {
         $closure = function ($request, $response) {
             echo "YES";
@@ -30,7 +30,7 @@ class QueueSpec extends ObjectBehavior
         $this->getNext()->shouldReturn($closure);
     }
 
-    function it_is_a_fifo_queue()
+    public function it_is_a_fifo_queue()
     {
         $closure1 = function ($request, $response) {
             echo "YES";
@@ -53,7 +53,7 @@ class QueueSpec extends ObjectBehavior
         $this->getNext()->shouldReturn($closure3);
     }
 
-    function it_can_insert_a_hook()
+    public function it_can_insert_a_hook()
     {
         $closure = function ($request, $response) {
             echo "YES";
@@ -71,12 +71,12 @@ class QueueSpec extends ObjectBehavior
         $this->getNext()->shouldReturn($closure);
     }
 
-    function it_cannot_add_invalid_hook()
+    public function it_cannot_add_invalid_hook()
     {
         $this->shouldThrow('\InvalidArgumentException')->during('addHook', [new \stdClass()]);
     }
 
-    function it_cannot_insert_invalid_hook()
+    public function it_cannot_insert_invalid_hook()
     {
         $this->shouldThrow('\InvalidArgumentException')->during('insertHook', [new \stdClass(), 2]);
     }

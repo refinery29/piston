@@ -7,12 +7,12 @@ use Prophecy\Argument;
 
 class RequestSpec extends ObjectBehavior
 {
-    function it_is_initializable()
+    public function it_is_initializable()
     {
         $this->shouldHaveType('Refinery29\Piston\Request\Request');
     }
 
-    function it_can_set_requested_fields()
+    public function it_can_set_requested_fields()
     {
         $req_fields = ['yolo', 'gogo'];
         $this->setRequestedFields($req_fields);
@@ -21,7 +21,7 @@ class RequestSpec extends ObjectBehavior
         $this->requestsSpecificFields()->shouldReturn(true);
     }
 
-    function it_can_set_included_resources()
+    public function it_can_set_included_resources()
     {
         $included_resources = ['monica', 'chandler'];
         $this->setIncludedResources($included_resources);
@@ -30,7 +30,7 @@ class RequestSpec extends ObjectBehavior
         $this->hasIncludedResources()->shouldReturn(true);
     }
 
-    function it_can_set_pagination()
+    public function it_can_set_pagination()
     {
         $pagination_cursor = rand();
         $this->setPaginationCursor($pagination_cursor);

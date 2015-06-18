@@ -5,69 +5,69 @@ use Prophecy\Argument;
 
 class RouteSpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
         $this->beConstructedThrough('get', ['alias', 'something']);
     }
 
-    function it_can_create_a_get_route()
+    public function it_can_create_a_get_route()
     {
         $this->beConstructedThrough('get', ['something', 'something']);
         $this->shouldHaveType('Refinery29\Piston\Router\Routes\Route');
         $this->getVerb()->shouldReturn('GET');
     }
 
-    function it_can_create_a_post_route()
+    public function it_can_create_a_post_route()
     {
         $this->beConstructedThrough('post', ['something', 'something']);
         $this->shouldHaveType('Refinery29\Piston\Router\Routes\Route');
         $this->getVerb()->shouldReturn('POST');
     }
 
-    function it_can_create_a_put_route()
+    public function it_can_create_a_put_route()
     {
         $this->beConstructedThrough('put', ['something', 'something']);
         $this->shouldHaveType('Refinery29\Piston\Router\Routes\Route');
         $this->getVerb()->shouldReturn('PUT');
     }
 
-    function it_can_create_a_delete_route()
+    public function it_can_create_a_delete_route()
     {
         $this->beConstructedThrough('delete', ['something', 'something']);
         $this->shouldHaveType('Refinery29\Piston\Router\Routes\Route');
         $this->getVerb()->shouldReturn('DELETE');
     }
 
-    function it_can_get_Alias()
+    public function it_can_get_Alias()
     {
         $this->beConstructedThrough('get', ['alias', 'something']);
 
         $this->getAlias()->shouldReturn('alias');
     }
 
-    function it_can_get_action()
+    public function it_can_get_action()
     {
         $this->beConstructedThrough('get', ['alias', 'action']);
 
         $this->getAction()->shouldReturn('action');
     }
 
-    function it_cannot_use_invalid_verbs()
+    public function it_cannot_use_invalid_verbs()
     {
         $this->shouldThrow('\Exception')->during('__construct', ['YOLO', 'something', 'something']);
     }
 
-    function it_cannot_add_invalid_pre_hook()
+    public function it_cannot_add_invalid_pre_hook()
     {
         $this->shouldThrow('\InvalidArgumentException')->during('addPreHook', [new \stdClass()]);
     }
 
-    function it_cannot_add_invalid_post_hook()
+    public function it_cannot_add_invalid_post_hook()
     {
         $this->shouldThrow('\InvalidArgumentException')->during('addPostHook', [new \stdClass()]);
     }
 
-    function it_can_add_pre_hooks()
+    public function it_can_add_pre_hooks()
     {
         $closure = function ($request, $response) {
             return $response;
@@ -80,10 +80,9 @@ class RouteSpec extends ObjectBehavior
         $pre_hooks->shouldHaveType('Refinery29\Piston\Hooks\Queue');
 
         $pre_hooks->getNext()->shouldReturn($closure);
-
     }
 
-    function it_can_add_post_hooks()
+    public function it_can_add_post_hooks()
     {
         $closure = function ($request, $response) {
             return $response;
@@ -98,17 +97,17 @@ class RouteSpec extends ObjectBehavior
         $pre_hooks->getNext()->shouldReturn($closure);
     }
 
-    function it_can_get_pre_hooks()
+    public function it_can_get_pre_hooks()
     {
         $this->getPreHooks()->shouldHaveType('Refinery29\Piston\Hooks\Queue');
     }
 
-    function it_can_get_post_hooks()
+    public function it_can_get_post_hooks()
     {
         $this->getPostHooks()->shouldHaveType('Refinery29\Piston\Hooks\Queue');
     }
 
-    function it_can_be_paginated()
+    public function it_can_be_paginated()
     {
         $this->beConstructedThrough('get', ['alias', 'something', true]);
 
