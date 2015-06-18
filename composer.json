@@ -8,8 +8,9 @@
     "league/event": "^2.1"
   },
   "require-dev": {
-    "phpspec/phpspec": "~2.2",
-    "phpspec/nyan-formatters": "~1.0"
+    "fabpot/php-cs-fixer": "^1.9",
+    "phpspec/nyan-formatters": "~1.0",
+    "phpspec/phpspec": "~2.2"
   },
   "authors": [
     {
