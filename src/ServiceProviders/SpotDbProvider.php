@@ -1,17 +1,15 @@
 <?php namespace Refinery29\Piston\ServiceProviders;
 
+use Exception;
 use League\Container\ServiceProvider;
 use Spot\Config;
 use Spot\Locator;
 
-/**
- * Created by PhpStorm.
- * User: kayla.daniels
- * Date: 6/15/15
- * Time: 1:40 PM
- */
 class SpotDbProvider extends ServiceProvider
 {
+    /**
+     * @var array
+     */
     protected $provides = [
         'db'
     ];
@@ -31,6 +29,9 @@ class SpotDbProvider extends ServiceProvider
         $this->container['db'] = new Locator($cfg);;
     }
 
+    /**
+     * @throws Exception
+     */
     private function validateEnvConfig()
     {
         if (!isset($_ENV['DB_NAME'])
@@ -39,7 +40,7 @@ class SpotDbProvider extends ServiceProvider
             || !isset($_ENV['DB_HOST'])
             || !isset($_ENV['DB_DRIVER'])
             ){
-            throw new \Exception();
+            throw new Exception();
         }
     }
 }
