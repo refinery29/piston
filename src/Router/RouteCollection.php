@@ -19,11 +19,6 @@ class RouteCollection extends Router
     private $groups = [];
 
     /**
-     * @var Router
-     */
-    private $router;
-
-    /**
      * @param ContainerInterface $container
      */
     public function __construct(ContainerInterface $container)
