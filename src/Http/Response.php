@@ -4,7 +4,7 @@ use Symfony\Component\HttpFoundation\Response as SResponse;
 
 class Response extends SResponse
 {
-    protected $pagination;
+    private $pagination;
 
     public function setPaginationCursors(array $cursor)
     {

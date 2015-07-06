@@ -11,17 +11,17 @@ class Request extends SRequest
     /**
      * @var null
      */
-    protected $pagination_cursor = null;
+    private $pagination_cursor = null;
 
     /**
      * @var null
      */
-    protected $requested_fields = null;
+    private $requested_fields = null;
 
     /**
      * @var null
      */
-    protected $included_resources = null;
+    private $included_resources = null;
 
     /**
      * @return null

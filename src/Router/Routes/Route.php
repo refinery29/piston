@@ -9,22 +9,22 @@ class Route
     /**
      * @var
      */
-    protected $verb;
+    private $verb;
 
     /**
      * @var
      */
-    protected $alias;
+    private $alias;
 
     /**
      * @var
      */
-    protected $action;
+    private $action;
 
     /**
      * @var bool
      */
-    protected $is_paginated = false;
+    private $is_paginated = false;
 
     /**
      * @var array

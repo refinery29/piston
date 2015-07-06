@@ -11,7 +11,7 @@ class RouteGroup
     /**
      * @var array
      */
-    protected $routes = [];
+    private $routes = [];
 
     use Hookable;
 
