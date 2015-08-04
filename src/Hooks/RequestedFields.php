@@ -18,13 +18,13 @@ class RequestedFields implements StageInterface
     {
         $fields = $request->get('fields');
 
-        if ($fields) {
-            $this->ensureGetOnlyRequest($request);
+        if (!$fields) {
+            return $request;
         }
 
-        if ($fields) {
-            $fields = explode(',', $fields);
-        }
+        $this->ensureGetOnlyRequest($request);
+
+        $fields = explode(',', $fields);
 
         if (!empty($fields)) {
             $request->setRequestedFields((array)$fields);
