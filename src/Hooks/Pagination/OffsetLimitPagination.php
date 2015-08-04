@@ -16,10 +16,17 @@ class OffsetLimitPagination extends PaginationHook
      */
     public function process($request)
     {
+        $offset = $request->get('offset');
+        $limit = $request->get('limit');
+
+        if (!$offset && !$limit) {
+            return $request;
+        }
+
         parent::process($request);
 
-        $offset = $this->coerceToInteger($request->get('offset'), 'offset') ?: $this->default_offset;
-        $limit = $this->coerceToInteger($request->get('limit'), 'limit') ?: $this->default_limit;
+        $offset = $this->coerceToInteger($offset, 'offset') ?: $this->default_offset;
+        $limit = $this->coerceToInteger($limit, 'limit') ?: $this->default_limit;
 
         $request->setOffsetLimit($offset, $limit);
 
