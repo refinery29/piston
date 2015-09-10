@@ -119,11 +119,13 @@ class Piston implements ContainerAwareInterface, HasPipelines
      */
     public function launch()
     {
+        $request = $this->getRequest();
+
         $dispatcher = $this->router->getDispatcher();
 
         $this->loadContainer();
 
-        $response = $dispatcher->dispatch($this->request->getMethod(), $this->request->getPathInfo());
+        $response = $dispatcher->dispatch($request->getMethod(), $request->getPathInfo());
 
         $response = $this->postProcessResponse($response);
 
@@ -132,21 +134,23 @@ class Piston implements ContainerAwareInterface, HasPipelines
 
     protected function loadContainer()
     {
-        $this->preProcessRequest();
-        $this->getResponse($this->request);
+        $request = $this->getRequest();
 
-        $this->container->add('Request', $this->request, true);
-        $this->container->add('Response', $this->response, true);
+        $this->preProcessRequest($request);
+        $response = $this->getResponse($request);
+
+        $this->container->add('Request', $request, true);
+        $this->container->add('Response', $response, true);
     }
 
-    protected function preProcessRequest()
+    protected function preProcessRequest(Request $request)
     {
-        return (new RequestPipeline())->process($this->request);
+        return (new RequestPipeline())->process($request);
     }
 
-    protected function postProcessResponse($response)
+    protected function postProcessResponse(Response $response)
     {
-        return (new ResponsePipeline())->process($this->response);
+        return (new ResponsePipeline())->process($response);
     }
 
     /**
