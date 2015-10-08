@@ -57,6 +57,14 @@ class Response implements ResponseInterface
         $this->response->setStatusCode($code);
     }
 
+    /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->response->getStatusCode();
+    }
+
     public function send()
     {
         $this->setResponseContent();
