@@ -24,4 +24,11 @@ class ResponseSpec extends ObjectBehavior
     {
         $this->shouldHaveType(Response::class);
     }
+
+    public function it_can_set_and_get_status_code()
+    {
+        $this->setStatusCode(202);
+
+        $this->getStatusCode()->shouldReturn(202);
+    }
 }
