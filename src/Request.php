@@ -232,6 +232,21 @@ class Request extends ServerRequest
     }
 
     /**
+     * @param int $offset
+     * @param int $limit
+     * @return Request
+     */
+    public function withOffsetLimit($offset, $limit)
+    {
+        $new = clone $this;
+        $new->offset = $offset;
+        $new->limit = $limit;
+        $new->paginationType = self::OFFSET_LIMIT_PAGINATION;
+
+        return $new;
+    }
+
+    /**
      * @param array $sorts
      */
     public function setSorts(array $sorts)

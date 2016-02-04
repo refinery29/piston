@@ -59,6 +59,14 @@ class RequestSpec extends ObjectBehavior
         $this->getPaginationType()->shouldReturn(Request::OFFSET_LIMIT_PAGINATION);
     }
 
+    public function it_can_set_an_offset_and_limit_returning_a_new_request_object()
+    {
+        $request = $this->withOffsetLimit(10, 10);
+        $request->shouldHaveType(Request::class);
+        $request->getOffsetLimit()->shouldReturn(['offset' => 10, 'limit' => 10]);
+        $request->getPaginationType()->shouldReturn(Request::OFFSET_LIMIT_PAGINATION);
+    }
+
     public function it_returns_empty_array_when_no_offset_limit_is_set()
     {
         $this->getOffsetLimit()->shouldReturn([]);
