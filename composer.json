@@ -34,6 +34,7 @@
     "henrikbjorn/phpspec-code-coverage": "~1.0",
     "phpspec/nyan-formatters": "~1.0",
     "phpspec/phpspec": "^2.4.1",
+    "phpunit/phpunit": "^4.8.23",
     "refinery29/php-cs-fixer-config": "0.4.1",
     "refinery29/test-util": "0.3.0"
   },

@@ -9,5 +9,10 @@ coverage: composer
 cs: composer
 	bin/php-cs-fixer fix --config=.php_cs --verbose --diff
 
-test: composer
+spec: composer
 	bin/phpspec run --config phpspec.yml
+
+test: spec unit
+
+unit: composer
+	bin/phpunit --configuration=test/Unit/phpunit.xml
