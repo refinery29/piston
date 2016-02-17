@@ -16,3 +16,6 @@ test: spec unit
 
 unit: composer
 	bin/phpunit --configuration=test/Unit/phpunit.xml
+
+validate-tests:
+	bin/humbug
