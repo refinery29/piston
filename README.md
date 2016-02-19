@@ -216,4 +216,4 @@ All of the above filters are only allowed on `GET` requests. Use of any of these
 
 ## Code of Conduct
 
-Please have a look at [CONDUCT.md](CONDUCT.md).
+Please have a look at [CONDUCT.md](.github/CONDUCT.md).
