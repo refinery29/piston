@@ -31,7 +31,8 @@ class IncludedResourceSpec extends ObjectBehavior
     {
         /** @var Request $request */
         $request = (new Request())->withQueryParams(['include' => 'foo,bar,baz']);
-        $result = $this->process(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
+        $result = $this->process(new Payload($middleware->getWrappedObject(),
+            $request, new ApiResponse()))->getRequest();
 
         $result->shouldHaveType(Request::class);
 
@@ -48,32 +49,37 @@ class IncludedResourceSpec extends ObjectBehavior
         /** @var Request $request */
         $request = (new Request())->withQueryParams(['include' => 'foo.bing,bar,baz']);
 
-        $result = $this->process(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
+        $result = $this->process(new Payload($middleware->getWrappedObject(),
+            $request, new ApiResponse()))->getRequest();
 
         $result->shouldHaveType(Request::class);
 
         $resources = $result->getIncludedResources();
         $resources->shouldBeArray();
 
-        $resources->shouldContain(['foo',  'bing']);
+        $resources->shouldContain(['foo', 'bing']);
         $resources->shouldContain('bar');
         $resources->shouldContain('baz');
     }
 
-    public function it_does_not_ensure_get_only_request_when_no_resources_included(Piston $middleware)
-    {
+    public function it_does_not_ensure_get_only_request_when_no_resources_included(
+        Piston $middleware
+    ) {
         $request = (new Request())->withMethod('POST');
 
-        $result = $this->process(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
+        $result = $this->process(new Payload($middleware->getWrappedObject(),
+            $request, new ApiResponse()))->getRequest();
 
         $result->shouldHaveType(Request::class);
     }
 
-    public function it_ensures_get_only_request_when_resources_are_included(Piston $middleware)
-    {
+    public function it_ensures_get_only_request_when_resources_are_included(
+        Piston $middleware
+    ) {
         $request = (new Request())->withMethod('POST')->withQueryParams(['include' => 'foo']);
 
-        $payload = new Payload($middleware->getWrappedObject(), $request, new ApiResponse());
+        $payload = new Payload($middleware->getWrappedObject(), $request,
+            new ApiResponse());
 
         $this->shouldThrow(BadRequestException::class)->duringProcess($payload);
     }

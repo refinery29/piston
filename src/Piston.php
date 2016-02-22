@@ -58,7 +58,6 @@ class Piston extends RouteCollection implements Middleware\HasMiddleware
         $this->container = $container ?: new Container();
         $this->request = $request ?: RequestFactory::fromGlobals();
         $this->emitter = $emitter ?: new SapiEmitter();
-
         $this->response = new ApiResponse();
 
         $this->loadContainer();
@@ -100,7 +99,10 @@ class Piston extends RouteCollection implements Middleware\HasMiddleware
     {
         $path = sprintf('/%s', ltrim($path, '/'));
 
-        $route = (new Route())->setMethods((array) $method)->setPath($path)->setCallable($handler);
+        $route = (new Route())
+            ->setMethods((array) $method)
+            ->setPath($path)
+            ->setCallable($handler);
 
         $this->routes[] = $route;
 

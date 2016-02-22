@@ -1,6 +1,5 @@
 /bin
 /build
-/coverage
 /vendor/
 .idea/
 .php_cs.cache

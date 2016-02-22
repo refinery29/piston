@@ -1,0 +1,15 @@
+{
+  "source": {
+    "directories": [
+      "src"
+    ],
+    "excludes": [
+      "vendor"
+    ]
+  },
+  "chdir": "test\/Unit",
+  "timeout": 10,
+  "logs": {
+    "text": "build/humbug/log.txt"
+  }
+}

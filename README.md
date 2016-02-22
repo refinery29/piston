@@ -4,7 +4,6 @@ Opinionated Micro Framework for APIs
 [![Build Status](https://travis-ci.org/refinery29/piston.svg?branch=master)](https://travis-ci.org/refinery29/piston)
 [![Code Climate](https://codeclimate.com/github/refinery29/piston/badges/gpa.svg)](https://codeclimate.com/github/refinery29/piston)
 [![Test Coverage](https://codeclimate.com/github/refinery29/piston/badges/coverage.svg)](https://codeclimate.com/github/refinery29/piston/coverage)
-[![Dependency Status](https://www.versioneye.com/user/projects/55c35f4d6537620020002d4c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55c35f4d6537620020002d4c)
 
 ## Installation
 
@@ -216,4 +215,4 @@ All of the above filters are only allowed on `GET` requests. Use of any of these
 
 ## Code of Conduct
 
-Please have a look at [CONDUCT.md](CONDUCT.md).
+Please have a look at [CONDUCT.md](.github/CONDUCT.md).

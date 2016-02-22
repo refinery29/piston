@@ -40,7 +40,11 @@ class RequestedFields implements StageInterface
         }
 
         if (!empty($fields)) {
-            $request->setRequestedFields((array) $fields);
+            $payload = new Payload(
+                $payload->getSubject(),
+                $request->withRequestedFields((array) $fields),
+                $payload->getResponse()
+            );
         }
 
         return $payload;

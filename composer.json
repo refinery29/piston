@@ -18,10 +18,14 @@
     {
       "name": "Ryan Catlin",
       "email": "ryan.catlin@refinery29.com"
+    },
+    {
+      "name": "Matthew Setter",
+      "email": "matthew.setter@refinery29.com"
     }
   ],
   "require": {
-    "php": ">=5.5",
+    "php": "^5.6 || ^7.0",
     "beberlei/assert": "^2.4",
     "league/pipeline": "0.1.0",
     "league/route": "dev-develop",
@@ -31,10 +35,10 @@
   "require-dev": {
     "codeclimate/php-test-reporter": "0.2.0",
     "fzaninotto/faker": "^1.5.0",
-    "henrikbjorn/phpspec-code-coverage": "~1.0",
+    "humbug/humbug": "^1.0.0-alpha1",
     "phpspec/nyan-formatters": "~1.0",
     "phpspec/phpspec": "^2.4.1",
-    "phpunit/phpunit": "^4.8.23",
+    "phpunit/phpunit": "^5.2.8",
     "refinery29/php-cs-fixer-config": "0.4.1",
     "refinery29/test-util": "0.3.0"
   },
@@ -45,6 +49,7 @@
   },
   "autoload-dev": {
     "psr-4": {
+      "Refinery29\\Piston\\Test\\": "test",
       "spec\\Refinery29\\Piston\\": "spec"
     }
   },

@@ -11,6 +11,9 @@ namespace Refinery29\Piston;
 
 use Zend\Diactoros\ServerRequest;
 
+/**
+ * Class Request
+ */
 class Request extends ServerRequest
 {
     const OFFSET_LIMIT_PAGINATION = 'offset_limit';
@@ -70,8 +73,8 @@ class Request extends ServerRequest
      * @param CookieJar $jar
      * @param array     $serverParams
      * @param array     $uploadedFiles
-     * @param null      $uri
-     * @param null      $method
+     * @param string    $uri
+     * @param string    $method
      * @param string    $body
      * @param array     $headers
      */
@@ -109,8 +112,10 @@ class Request extends ServerRequest
 
     /**
      * @param array $requestedFields
+     *
+     * @deprecated
      */
-    public function setRequestedFields($requestedFields)
+    public function setRequestedFields(array $requestedFields = [])
     {
         $this->requestedFields = $requestedFields;
     }
@@ -125,8 +130,10 @@ class Request extends ServerRequest
 
     /**
      * @param array $included_resources
+     *
+     * @deprecated
      */
-    public function setIncludedResources($included_resources)
+    public function setIncludedResources(array $included_resources)
     {
         $this->includedResources = $included_resources;
     }
@@ -141,6 +148,8 @@ class Request extends ServerRequest
 
     /**
      * @param string $after_cursor
+     *
+     * @deprecated
      */
     public function setAfterCursor($after_cursor)
     {
@@ -150,6 +159,8 @@ class Request extends ServerRequest
 
     /**
      * @param string $before_cursor
+     *
+     * @deprecated
      */
     public function setBeforeCursor($before_cursor)
     {
@@ -160,6 +171,8 @@ class Request extends ServerRequest
     /**
      * @param string $offset
      * @param string $limit
+     *
+     * @deprecated
      */
     public function setOffsetLimit($offset, $limit)
     {
@@ -212,7 +225,7 @@ class Request extends ServerRequest
     }
 
     /**
-     * @return array
+     * @return array[string]mixed
      */
     public function getCookies()
     {
@@ -275,5 +288,91 @@ class Request extends ServerRequest
         }
 
         return $this->sorts[$name];
+    }
+
+    /**
+     * @param int $offset
+     * @param int $limit
+     *
+     * @return Request
+     */
+    public function withOffsetLimit($offset, $limit)
+    {
+        $new = clone $this;
+        $new->offset = $offset;
+        $new->limit = $limit;
+        $new->paginationType = self::OFFSET_LIMIT_PAGINATION;
+
+        return $new;
+    }
+
+    /**
+     * @param string $beforeCursor
+     *
+     * @return Request
+     */
+    public function withBeforeCursor($beforeCursor)
+    {
+        $new = clone $this;
+        $new->beforeCursor = $beforeCursor;
+        $new->paginationType = self::CURSOR_PAGINATION;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBeforeCursor()
+    {
+        return $this->beforeCursor;
+    }
+
+    /**
+     * @param string $afterCursor
+     *
+     * @return Request
+     */
+    public function withAfterCursor($afterCursor)
+    {
+        $new = clone $this;
+        $new->afterCursor = $afterCursor;
+        $new->paginationType = self::CURSOR_PAGINATION;
+
+        return $new;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAfterCursor()
+    {
+        return $this->afterCursor;
+    }
+
+    /**
+     * @param array $includedResources
+     *
+     * @return Request
+     */
+    public function withIncludedResources($includedResources)
+    {
+        $new = clone $this;
+        $new->includedResources = $includedResources;
+
+        return $new;
+    }
+
+    /**
+     * @param array $requestedFields
+     *
+     * @return Request
+     */
+    public function withRequestedFields($requestedFields)
+    {
+        $new = clone $this;
+        $new->requestedFields = $requestedFields;
+
+        return $new;
     }
 }

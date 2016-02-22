@@ -46,6 +46,14 @@ $ make coverage
 
 if you are interested in code coverage.
 
+Run
+
+```
+$ make humbug
+```
+
+if you are interested in running mutation tests.
+
 ## Extra lazy?
 
 Run

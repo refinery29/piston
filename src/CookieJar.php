@@ -35,10 +35,13 @@ class CookieJar
      */
     public function get($key)
     {
-        return isset($this->cookies[$key])
-            ? $this->cookies[$key]
-            : null
-            ;
+        Assertion::string($key);
+
+        if (!array_key_exists($key, $this->cookies)) {
+            return;
+        }
+
+        return $this->cookies[$key];
     }
 
     /**
@@ -47,6 +50,8 @@ class CookieJar
      */
     public function set($key, $value)
     {
+        Assertion::string($key);
+
         $this->cookies[$key] = $value;
     }
 
@@ -55,9 +60,9 @@ class CookieJar
      */
     public function clear($key)
     {
-        if (isset($this->cookies[$key])) {
-            unset($this->cookies[$key]);
-        }
+        Assertion::string($key);
+
+        unset($this->cookies[$key]);
     }
 
     public function clearAll()
