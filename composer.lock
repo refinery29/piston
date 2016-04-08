@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "89ddf14f053c236c7668138a3b7c8538",
-    "content-hash": "ec0f6273884707414f40de3f41ca09b4",
+    "hash": "7aea1f2b62d012d8d7acd85b3b9cf466",
+    "content-hash": "5941f75e34a4bc808b52130c58c434e8",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -200,7 +200,7 @@
         },
         {
             "name": "league/route",
-            "version": "dev-develop",
+            "version": "2.0.0-RC1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/route.git",
@@ -208,7 +208,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/route/zipball/92d5abde69e3df71b91a31d9656a62034cd8d6d0",
+                "url": "https://api.github.com/repos/thephpleague/route/zipball/588b33bb3364a70b66fc4d63f56bda5f6d418b44",
                 "reference": "588b33bb3364a70b66fc4d63f56bda5f6d418b44",
                 "shasum": ""
             },
@@ -567,7 +567,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/11088fbb819088308d297c34860b3dde5411fc9a",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/51c70424c9cae249a294586e948d561374cbe74f",
                 "reference": "f59678b9896c1ff3e78b7ab418a0e8fa337d6f81",
                 "shasum": ""
             },
@@ -2972,9 +2972,7 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "league/route": 20
-    },
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
