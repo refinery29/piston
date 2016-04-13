@@ -10,6 +10,7 @@
 namespace Refinery29\Piston\Test\Unit;
 
 use Refinery29\Piston\CookieJar;
+use Refinery29\Piston\Middleware\Request\Sorts;
 use Refinery29\Piston\Request;
 use Refinery29\Test\Util\Faker\GeneratorTrait;
 
@@ -293,9 +294,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $faker = $this->getFaker();
         $sorts = [
-            $faker->word => 'DESC',
-            $faker->word => 'ASC',
-            $faker->word => 'DESC',
+            $faker->word => Sorts::SORT_DESCENDING,
+            $faker->word => Sorts::SORT_ASCENDING,
+            $faker->word => Sorts::SORT_DESCENDING,
         ];
 
         $request = new Request();
