@@ -294,9 +294,9 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $faker = $this->getFaker();
         $sorts = [
-            $faker->word => Sorts::DESC,
-            $faker->word => Sorts::ASC,
-            $faker->word => Sorts::DESC,
+            $faker->word => Sorts::SORT_DESCENDING,
+            $faker->word => Sorts::SORT_ASCENDING,
+            $faker->word => Sorts::SORT_DESCENDING,
         ];
 
         $request = new Request();
