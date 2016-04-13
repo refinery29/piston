@@ -263,6 +263,14 @@ class Request extends ServerRequest
     }
 
     /**
+     * @return array
+     */
+    public function getSorts()
+    {
+        return $this->sorts;
+    }
+
+    /**
      * @param string $name
      *
      * @return bool

@@ -289,6 +289,26 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($cookies, $request->getCookies());
     }
 
+    public function testGetSetSorts()
+    {
+        $faker = $this->getFaker();
+        $sorts = [
+            $faker->word => 'DESC',
+            $faker->word => 'ASC',
+            $faker->word => 'DESC',
+        ];
+
+        $request = new Request();
+
+        $request->setSorts($sorts);
+
+        $this->assertSame($sorts, $request->getSorts());
+
+        foreach (array_keys($sorts) as $sort) {
+            $this->assertTrue($request->hasSort($sort));
+        }
+    }
+
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject|CookieJar
      */
