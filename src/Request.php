@@ -67,7 +67,7 @@ class Request extends ServerRequest
     /**
      * @var array
      */
-    private $sorts;
+    private $sorts = [];
 
     /**
      * @param CookieJar $jar
@@ -277,10 +277,6 @@ class Request extends ServerRequest
      */
     public function hasSort($name)
     {
-        if ($this->sorts === null) {
-            return false;
-        }
-
         return array_key_exists($name, $this->sorts);
     }
 
