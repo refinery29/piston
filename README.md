@@ -73,7 +73,6 @@ require_once 'vendor/autoload.php';
 use DummyPistonApp\Controller;
 use Refinery29\Piston\Piston;
 
-$jediController = new JediController();
 $application = new Piston();
 $application->addRoute('GET', '/', Controller\JediController::class . '::renderHomePage');
 
