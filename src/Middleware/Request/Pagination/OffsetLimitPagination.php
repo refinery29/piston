@@ -41,11 +41,8 @@ class OffsetLimitPagination implements StageInterface
     {
         /** @var Request $request */
         $request = $payload->getRequest();
-
-        $queryParams = $request->getQueryParams();
-
-        $offset = (isset($queryParams['offset'])) ? $this->coerceToInteger($queryParams['offset'], 'offset') : null;
-        $limit = (isset($queryParams['limit'])) ? $this->coerceToInteger($queryParams['limit'], 'limit') : null;
+        $offset = $this->getOffset($request->getQueryParams());
+        $limit = $this->getLimit($request->getQueryParams());
 
         if ($offset || $limit) {
             $this->ensureNotPreviouslyPaginated($request);
@@ -61,22 +58,60 @@ class OffsetLimitPagination implements StageInterface
 
     /**
      * @param mixed  $param
-     * @param string $param_name
+     * @param string $paramName
      *
      * @throws BadRequestException
      *
      * @return int
      */
-    private function coerceToInteger($param, $param_name)
+    private function coerceToInteger($param, $paramName)
     {
         if (is_numeric($param)) {
-            $integer_value = intval($param);
+            $integerValue = intval($param);
 
-            if ($integer_value == floatval($param)) {
-                return $integer_value;
+            if ($integerValue == floatval($param)) {
+                return $integerValue;
             }
         }
 
-        throw new BadRequestException('Parameter "' . $param_name . '" must be an integer. Got ' . $param);
+        throw new BadRequestException(
+            'Parameter "' . $paramName . '" must be an integer. Got ' . $param
+        );
+    }
+
+    /**
+     * @param array $queryParams
+     *
+     * @throws BadRequestException
+     *
+     * @return int|null
+     */
+    private function getOffset(array $queryParams = [])
+    {
+        $offset = null;
+
+        if (isset($queryParams['offset'])) {
+            $offset = $this->coerceToInteger($queryParams['offset'], 'offset');
+        }
+
+        return $offset;
+    }
+
+    /**
+     * @param array $queryParams
+     *
+     * @throws BadRequestException
+     *
+     * @return int|null
+     */
+    private function getLimit(array $queryParams = [])
+    {
+        $limit = null;
+
+        if (isset($queryParams['limit'])) {
+            $limit = $this->coerceToInteger($queryParams['limit'], 'limit');
+        }
+
+        return $limit;
     }
 }

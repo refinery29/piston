@@ -60,6 +60,8 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
     /**
      * @param int $code
      *
+     * @deprecated
+     *
      * @return static
      */
     public function setStatusCode($code)
