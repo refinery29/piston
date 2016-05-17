@@ -32,7 +32,7 @@ class Request extends ServerRequest
     /**
      * @var array
      */
-    protected $requestedFields;
+    protected $requestedFields = [];
 
     /**
      * @var array
