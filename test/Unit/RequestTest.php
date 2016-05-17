@@ -36,6 +36,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($requestedFields, $request->getRequestedFields());
     }
 
+    public function testRequestedFieldsIsArrayByDefault()
+    {
+        $request = new Request();
+
+        $this->assertSame([], $request->getRequestedFields());
+    }
+
     public function testWithRequestedFieldsClonesRequestAndSetsRequestedFields()
     {
         $requestedFields = $this->getFaker()->words;
