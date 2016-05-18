@@ -37,7 +37,7 @@ class Request extends ServerRequest
     /**
      * @var array
      */
-    protected $includedResources;
+    protected $includedResources = [];
 
     /**
      * @var string
