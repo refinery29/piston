@@ -10,6 +10,7 @@
 namespace Refinery29\Piston;
 
 use Psr\Http\Message\StreamInterface;
+use Refinery29\ApiOutput\Resource\CustomResult;
 use Refinery29\ApiOutput\Resource\Error\ErrorCollection;
 use Refinery29\ApiOutput\Resource\Pagination\Pagination;
 use Refinery29\ApiOutput\Resource\Result;
@@ -18,6 +19,7 @@ use Zend\Diactoros\Response as DiactorosResponse;
 
 class ApiResponse extends DiactorosResponse implements CompiledResponse
 {
+    const ERROR_CANNOT_USE_CUSTOM_AND_OTHER_RESOURCES = 'Cannot add other members when making a custom Response';
     /**
      * @var ResponseBody
      */
@@ -74,7 +76,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
     {
         $this->checksForCustomObject();
         if (count($this->responseBody->getMembers()) > 0) {
-            throw new \Exception('Custom Result cannot be used with other Resources');
+            throw new \Exception(self::ERROR_CANNOT_USE_CUSTOM_AND_OTHER_RESOURCES);
         }
         $this->responseBody->addMember($customResult->getSerializer());
 
@@ -87,7 +89,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
     private function checksForCustomObject()
     {
         if ($this->isCustom) {
-            throw new \Exception('Cannot add other members when making a custom Response');
+            throw new \Exception(self::ERROR_CANNOT_USE_CUSTOM_AND_OTHER_RESOURCES);
         }
     }
 

@@ -10,6 +10,7 @@
 namespace spec\Refinery29\Piston;
 
 use PhpSpec\ObjectBehavior;
+use Refinery29\ApiOutput\Resource\CustomResult;
 use Refinery29\ApiOutput\Resource\Error\Error;
 use Refinery29\ApiOutput\Resource\Error\ErrorCollection as ErrorCollectionResource;
 use Refinery29\ApiOutput\Resource\Pagination\Pagination;
@@ -64,6 +65,37 @@ class ApiResponseSpec extends ObjectBehavior
         $this->setResult($result);
 
         $rb->addMember($result->getSerializer())->shouldBeCalled();
+    }
+
+    public function it_can_set_custom_result(ResponseBody $rb)
+    {
+        $this->beConstructedWith($rb);
+
+        $customResult = new CustomResult(['yes' => 'no']);
+
+        $this->setCustomResult($customResult);
+
+        $rb->addMember($customResult->getSerializer())->shouldBeCalled();
+    }
+
+    public function it_cannot_set_result_error_pagination_after_setting_custom_result(ResponseBody $rb)
+    {
+        $this->beConstructedWith($rb);
+
+        // Assign Custom
+        $customResult = new CustomResult(['yes' => 'no']);
+
+        $this->setCustomResult($customResult);
+
+        $rb->addMember($customResult->getSerializer())->shouldBeCalled();
+
+        // Assign Pagination
+
+        $this->shouldThrow(new \Exception(ApiResponse::ERROR_CANNOT_USE_CUSTOM_AND_OTHER_RESOURCES))->duringMethodName('checksForCustomObject');
+
+        $result = new Pagination();
+
+        $this->setPagination($result);
     }
 
     public function it_can_set_pagination(ResponseBody $rb)
