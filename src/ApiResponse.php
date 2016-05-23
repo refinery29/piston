@@ -24,6 +24,11 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
     private $responseBody;
 
     /**
+     * @var bool
+     */
+    private $isTopless = false;
+
+    /**
      * @param ResponseBody                    $responseBody
      * @param string|resource|StreamInterface $body         Stream identifier and/or actual stream resource
      */
@@ -38,6 +43,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
      */
     public function setPagination(Pagination $pagination)
     {
+        $this->checksForToplevelObject();
         $this->responseBody->addMember($pagination->getSerializer());
     }
 
@@ -46,6 +52,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
      */
     public function setErrors(ErrorCollection $error)
     {
+        $this->checksForToplevelObject();
         $this->responseBody->addMember($error->getSerializer());
     }
 
@@ -54,7 +61,31 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
      */
     public function setResult(Result $result)
     {
+        $this->checksForToplevelObject();
         $this->responseBody->addMember($result->getSerializer());
+    }
+
+    /**
+     * @param ToplessResult $toplessResult
+     * @throws \Exception
+     */
+    public function setToplessResult(ToplessResult $toplessResult)
+    {
+        if (count($this->responseBody->getMembers()) > 0){
+            throw new \Exception('Topless Result cannot be used with other Resources');
+        }
+        $this->responseBody->addMember($toplessResult->getSerializer());
+        $this->isTopless = true;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    private function checksForToplevelObject()
+    {
+        if ($this->isTopless) {
+            throw new \Exception('Cannot add other members when making a Topless Response');
+        }
     }
 
     /**
