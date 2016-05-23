@@ -26,7 +26,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
     /**
      * @var bool
      */
-    private $isTopless = false;
+    private $isCustom = false;
 
     /**
      * @param ResponseBody                    $responseBody
@@ -43,7 +43,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
      */
     public function setPagination(Pagination $pagination)
     {
-        $this->checksForToplevelObject();
+        $this->checksForCustomObject();
         $this->responseBody->addMember($pagination->getSerializer());
     }
 
@@ -52,7 +52,7 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
      */
     public function setErrors(ErrorCollection $error)
     {
-        $this->checksForToplevelObject();
+        $this->checksForCustomObject();
         $this->responseBody->addMember($error->getSerializer());
     }
 
@@ -61,30 +61,30 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
      */
     public function setResult(Result $result)
     {
-        $this->checksForToplevelObject();
+        $this->checksForCustomObject();
         $this->responseBody->addMember($result->getSerializer());
     }
 
     /**
-     * @param ToplessResult $toplessResult
+     * @param CustomResult $customResult
      * @throws \Exception
      */
-    public function setToplessResult(ToplessResult $toplessResult)
+    public function setCustomResult(CustomResult $customResult)
     {
         if (count($this->responseBody->getMembers()) > 0){
-            throw new \Exception('Topless Result cannot be used with other Resources');
+            throw new \Exception('Custom Result cannot be used with other Resources');
         }
-        $this->responseBody->addMember($toplessResult->getSerializer());
-        $this->isTopless = true;
+        $this->responseBody->addMember($customResult->getSerializer());
+        $this->isCustom = true;
     }
 
     /**
      * @throws \Exception
      */
-    private function checksForToplevelObject()
+    private function checksForCustomObject()
     {
         if ($this->isTopless) {
-            throw new \Exception('Cannot add other members when making a Topless Response');
+            throw new \Exception('Cannot add other members when making a custom Response');
         }
     }
 
