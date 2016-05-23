@@ -29,7 +29,7 @@
     "beberlei/assert": "^2.4",
     "league/pipeline": "0.1.0",
     "league/route": "^2.0.0",
-    "refinery29/api-output": "~0.3.3",
+    "refinery29/api-output": "0.3.4",
     "zendframework/zend-diactoros": "^1.3.3"
   },
   "require-dev": {

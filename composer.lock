@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "41df9b122aabfd70e514745449cdc509",
-    "content-hash": "2d4672a19dc6e25a4fd2cd6a951e24c1",
+    "hash": "155bf73c194984863081a84eda12d348",
+    "content-hash": "9b05bed852b907395c21fe8b3785ebda",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -354,16 +354,16 @@
         },
         {
             "name": "refinery29/api-output",
-            "version": "0.3.3",
+            "version": "0.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/refinery29/api-output.git",
-                "reference": "ae65ca103f024d0a38f6c09b639690a3f8336c26"
+                "reference": "45da783e9a97e2ab7ae286c295f994244d579ac7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/refinery29/api-output/zipball/ae65ca103f024d0a38f6c09b639690a3f8336c26",
-                "reference": "ae65ca103f024d0a38f6c09b639690a3f8336c26",
+                "url": "https://api.github.com/repos/refinery29/api-output/zipball/45da783e9a97e2ab7ae286c295f994244d579ac7",
+                "reference": "45da783e9a97e2ab7ae286c295f994244d579ac7",
                 "shasum": ""
             },
             "require-dev": {
@@ -391,7 +391,7 @@
                 }
             ],
             "description": "Package for generating API output per refinery29/api-standards",
-            "time": "2016-05-23 21:25:59"
+            "time": "2016-05-23 21:47:15"
         },
         {
             "name": "zendframework/zend-diactoros",
