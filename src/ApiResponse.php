@@ -67,11 +67,13 @@ class ApiResponse extends DiactorosResponse implements CompiledResponse
 
     /**
      * @param CustomResult $customResult
+     *
      * @throws \Exception
      */
     public function setCustomResult(CustomResult $customResult)
     {
-        if (count($this->responseBody->getMembers()) > 0){
+        $this->checksForCustomObject();
+        if (count($this->responseBody->getMembers()) > 0) {
             throw new \Exception('Custom Result cannot be used with other Resources');
         }
         $this->responseBody->addMember($customResult->getSerializer());
