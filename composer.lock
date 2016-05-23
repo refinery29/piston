@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7aea1f2b62d012d8d7acd85b3b9cf466",
-    "content-hash": "5941f75e34a4bc808b52130c58c434e8",
+    "hash": "41df9b122aabfd70e514745449cdc509",
+    "content-hash": "2d4672a19dc6e25a4fd2cd6a951e24c1",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -354,16 +354,16 @@
         },
         {
             "name": "refinery29/api-output",
-            "version": "0.3.1",
+            "version": "0.3.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/refinery29/api-output.git",
-                "reference": "68bb0c8fc7c7ee65b0cb5da1d8ebd64f5ee2a99f"
+                "reference": "ae65ca103f024d0a38f6c09b639690a3f8336c26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/refinery29/api-output/zipball/68bb0c8fc7c7ee65b0cb5da1d8ebd64f5ee2a99f",
-                "reference": "68bb0c8fc7c7ee65b0cb5da1d8ebd64f5ee2a99f",
+                "url": "https://api.github.com/repos/refinery29/api-output/zipball/ae65ca103f024d0a38f6c09b639690a3f8336c26",
+                "reference": "ae65ca103f024d0a38f6c09b639690a3f8336c26",
                 "shasum": ""
             },
             "require-dev": {
@@ -391,7 +391,7 @@
                 }
             ],
             "description": "Package for generating API output per refinery29/api-standards",
-            "time": "2015-09-22 15:20:59"
+            "time": "2016-05-23 21:25:59"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -567,7 +567,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/51c70424c9cae249a294586e948d561374cbe74f",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/ca1cf78e4474dbef104130220853d2fabc3309c5",
                 "reference": "f59678b9896c1ff3e78b7ab418a0e8fa337d6f81",
                 "shasum": ""
             },
@@ -2400,12 +2400,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "9698fdf0a750d6887d5e7729d5cf099765b20e61"
+                "reference": "0327509ffd6d37354ec9acefcd946db7caaabdb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/9698fdf0a750d6887d5e7729d5cf099765b20e61",
-                "reference": "9698fdf0a750d6887d5e7729d5cf099765b20e61",
+                "url": "https://api.github.com/repos/symfony/config/zipball/0327509ffd6d37354ec9acefcd946db7caaabdb7",
+                "reference": "0327509ffd6d37354ec9acefcd946db7caaabdb7",
                 "shasum": ""
             },
             "require": {
