@@ -46,7 +46,8 @@ class PistonSpec extends ObjectBehavior
     public function it_can_add_a_route_group()
     {
         $this->shouldHaveType(Piston::class);
-        $this->group('prefix', function () {})->shouldHaveType(RouteGroup::class);
+        $this->group('prefix', function () {
+        })->shouldHaveType(RouteGroup::class);
     }
 
     public function it_pre_processes_a_request_with_included_resources()
