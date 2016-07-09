@@ -10,14 +10,11 @@
 namespace Refinery29\Piston\Middleware\Request;
 
 use League\Pipeline\StageInterface;
-use Refinery29\Piston\Middleware\GetOnlyStage;
 use Refinery29\Piston\Middleware\Payload;
 use Refinery29\Piston\Request;
 
 class IncludedResource implements StageInterface
 {
-    use GetOnlyStage;
-
     /**
      * @param Payload $payload
      *
@@ -33,8 +30,6 @@ class IncludedResource implements StageInterface
         if (!isset($request->getQueryParams()['include'])) {
             return $payload;
         }
-
-        $this->ensureGetOnlyRequest($request);
 
         $include = explode(',', $request->getQueryParams()['include']);
 
