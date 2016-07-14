@@ -12,7 +12,7 @@ namespace Refinery29\Piston;
 use Zend\Diactoros\ServerRequest;
 
 /**
- * Class Request
+ * Class Request.
  */
 class Request extends ServerRequest
 {
