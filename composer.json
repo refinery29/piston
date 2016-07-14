@@ -39,7 +39,7 @@
     "phpspec/nyan-formatters": "~1.0",
     "phpspec/phpspec": "^2.4.1",
     "phpunit/phpunit": "^5.2.8",
-    "refinery29/php-cs-fixer-config": "0.4.15",
+    "refinery29/php-cs-fixer-config": "0.4.18",
     "refinery29/test-util": "0.3.0"
   },
   "autoload": {
