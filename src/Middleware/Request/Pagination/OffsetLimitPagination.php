@@ -70,9 +70,9 @@ class OffsetLimitPagination implements StageInterface
     private function coerceToInteger($param, $param_name)
     {
         if (is_numeric($param)) {
-            $integer_value = intval($param);
+            $integer_value = (int) $param;
 
-            if ($integer_value == floatval($param)) {
+            if ($integer_value == (float) $param) {
                 return $integer_value;
             }
         }

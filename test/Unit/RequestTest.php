@@ -249,8 +249,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
                 if (array_key_exists($key, $cookies)) {
                     return $cookies[$key];
                 }
-            })
-        ;
+            });
 
         $request = new Request($cookieJar);
 
@@ -296,8 +295,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $cookieJar
             ->expects($this->once())
             ->method('all')
-            ->willReturn($cookies)
-        ;
+            ->willReturn($cookies);
 
         $request = new Request($cookieJar);
 
@@ -331,7 +329,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         return $this->getMockBuilder(CookieJar::class)
             ->disableOriginalConstructor()
-            ->getMock()
-        ;
+            ->getMock();
     }
 }
