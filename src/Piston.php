@@ -126,14 +126,14 @@ class Piston extends RouteCollection implements Middleware\HasMiddleware
             }
 
             return $this->emitter->emit($this->response);
-        } catch (\Exception $e) {
-            foreach ($this->exceptions as $exception => $callable) {
-                if ($e instanceof $exception) {
-                    return $callable($this);
+        } catch (\Exception $exception) {
+            foreach ($this->exceptions as $exceptionClassName => $callable) {
+                if ($exception instanceof $exceptionClassName) {
+                    return $callable($this, $exception);
                 }
             }
 
-            throw $e;
+            throw $exception;
         }
     }
 
