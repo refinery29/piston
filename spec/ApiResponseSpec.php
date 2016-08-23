@@ -12,7 +12,6 @@ namespace spec\Refinery29\Piston;
 use PhpSpec\ObjectBehavior;
 use Refinery29\ApiOutput\Resource\CustomResult;
 use Refinery29\ApiOutput\Resource\Error\Error;
-use Refinery29\ApiOutput\Resource\Error\ErrorCollection;
 use Refinery29\ApiOutput\Resource\Error\ErrorCollection as ErrorCollectionResource;
 use Refinery29\ApiOutput\Resource\Pagination\Pagination;
 use Refinery29\ApiOutput\Resource\Result;
@@ -96,7 +95,7 @@ class ApiResponseSpec extends ObjectBehavior
 
         $this->shouldThrow('\Exception')->duringSetPagination($result);
 
-        $result = new ErrorCollection();
+        $result = new Result([]);
 
         $this->shouldThrow('\Exception')->duringSetResult($result);
 
