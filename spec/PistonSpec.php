@@ -160,11 +160,11 @@ class PistonSpec extends ObjectBehavior
     public function it_can_register_and_catch_exceptions()
     {
         $this->addMiddleware(CallableStage::forCallable(function () {
-            throw new TestException();
+            throw new TestException('How now, Brown Cow?');
         }));
 
-        $this->registerException(TestException::class, function () {
-            return 'How now, Brown Cow?';
+        $this->registerException(TestException::class, function (Piston $app, \Exception $exception) {
+            return $exception->getMessage();
         });
 
         $this->launch()->shouldReturn('How now, Brown Cow?');
