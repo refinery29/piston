@@ -15,6 +15,7 @@ use Refinery29\Piston\ApiResponse;
 use Refinery29\Piston\Middleware\Payload;
 use Refinery29\Piston\Middleware\Request\Pagination\OffsetLimitPagination;
 use Refinery29\Piston\Piston;
+use Refinery29\Piston\Request;
 use Refinery29\Piston\RequestFactory;
 
 /**
@@ -40,7 +41,7 @@ class OffsetLimitPaginationSpec extends ObjectBehavior
 
         $response = $this->process($this->getPayload($request, $piston));
         $response->shouldHaveType(Payload::class);
-        $response->getRequest()->shouldReturn($request);
+        $response->getRequest()->shouldBeAnInstanceOf(Request::class);
     }
 
     public function it_does_not_allow_usage_with_multiple_pagination_strategies(Piston $piston)

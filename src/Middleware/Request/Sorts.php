@@ -27,7 +27,7 @@ class Sorts implements StageInterface
      *
      * @throws \League\Route\Http\Exception\BadRequestException
      *
-     * @return Request
+     * @return Payload
      */
     public function process($payload)
     {
@@ -61,8 +61,8 @@ class Sorts implements StageInterface
             $sorts[$sort] = self::SORT_ASCENDING;
         }
 
-        $request->setSorts($sorts);
-
-        return $payload;
+        return $payload->withRequest(
+            $request->withSorts($sorts)
+        );
     }
 }

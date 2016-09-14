@@ -59,4 +59,43 @@ class Payload
     {
         return $this->response;
     }
+
+    /**
+     * @param Request $request
+     *
+     * @return Payload
+     */
+    public function withRequest(Request $request)
+    {
+        $new = clone $this;
+        $new->request = $request;
+
+        return $new;
+    }
+
+    /**
+     * @param ApiResponse $response
+     *
+     * @return Payload
+     */
+    public function withResponse(ApiResponse $response)
+    {
+        $new = clone $this;
+        $new->response = $response;
+
+        return $new;
+    }
+
+    /**
+     * @param HasMiddleware $subject
+     *
+     * @return Payload
+     */
+    public function withSubject(HasMiddleware $subject)
+    {
+        $new = clone $this;
+        $new->subject = $subject;
+
+        return $new;
+    }
 }

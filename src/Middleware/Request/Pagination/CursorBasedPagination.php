@@ -46,15 +46,15 @@ class CursorBasedPagination implements StageInterface
             $this->ensureGetOnlyRequest($request);
 
             if ($before) {
-                $request->setBeforeCursor($before);
-
-                return $payload;
+                return $payload->withRequest(
+                    $request->withBeforeCursor($before)
+                );
             }
 
             if ($after) {
-                $request->setAfterCursor($after);
-
-                return $payload;
+                return $payload->withRequest(
+                    $request->withAfterCursor($after)
+                );
             }
         }
 

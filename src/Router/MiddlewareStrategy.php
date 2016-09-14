@@ -9,7 +9,7 @@
 
 namespace Refinery29\Piston\Router;
 
-use League\Route\Route;
+use League\Route\Route as BaseRoute;
 use League\Route\Strategy\RequestResponseStrategy;
 use League\Route\Strategy\StrategyInterface;
 use Refinery29\Piston\ApiResponse;
@@ -21,13 +21,13 @@ class MiddlewareStrategy extends RequestResponseStrategy implements StrategyInte
     /**
      * @param callable|string $controller
      * @param array           $vars
-     * @param Route           $route
+     * @param BaseRoute       $route
      *
      * @throws \Exception
      *
      * @return ApiResponse
      */
-    public function dispatch(callable $controller, array $vars = [], Route $route = null)
+    public function dispatch(callable $controller, array $vars = [], BaseRoute $route = null)
     {
         if ($group = $route->getParentGroup()) {
             $this->response = (new PipelineProcessor())
