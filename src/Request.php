@@ -256,6 +256,8 @@ class Request extends ServerRequest
 
     /**
      * @param array $sorts
+     *
+     * @deprecated
      */
     public function setSorts(array $sorts)
     {
@@ -268,6 +270,19 @@ class Request extends ServerRequest
     public function getSorts()
     {
         return $this->sorts;
+    }
+
+    /**
+     * @param array $sorts
+     *
+     * @return Request
+     */
+    public function withSorts(array $sorts)
+    {
+        $new = clone $this;
+        $new->sorts = $sorts;
+
+        return $new;
     }
 
     /**

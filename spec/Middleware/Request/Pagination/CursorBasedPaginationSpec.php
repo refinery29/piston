@@ -15,6 +15,7 @@ use Refinery29\Piston\ApiResponse;
 use Refinery29\Piston\Middleware\Payload;
 use Refinery29\Piston\Middleware\Request\Pagination\CursorBasedPagination;
 use Refinery29\Piston\Piston;
+use Refinery29\Piston\Request;
 use Refinery29\Piston\RequestFactory;
 
 /**
@@ -63,7 +64,7 @@ class CursorBasedPaginationSpec extends ObjectBehavior
 
         $response = $this->process($this->getPayload($request, $middleware));
         $response->shouldHaveType(Payload::class);
-        $response->getRequest()->shouldReturn($request);
+        $response->getRequest()->shouldBeAnInstanceOf(Request::class);
     }
 
     public function it_will_not_allow_previously_paginated_requests(Piston $middleware)

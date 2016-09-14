@@ -41,10 +41,8 @@ class IncludedResource implements StageInterface
                 }
             }
 
-            $payload = new Payload(
-                $payload->getSubject(),
-                $request->withIncludedResources($include),
-                $payload->getResponse()
+            return $payload->withRequest(
+                $request->withIncludedResources($include)
             );
         }
 
