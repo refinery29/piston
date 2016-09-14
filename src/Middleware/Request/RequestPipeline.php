@@ -15,6 +15,7 @@ use League\Pipeline\StageInterface;
 use Refinery29\Piston\Middleware\Payload;
 use Refinery29\Piston\Middleware\Request\Pagination\CursorBasedPagination;
 use Refinery29\Piston\Middleware\Request\Pagination\OffsetLimitPagination;
+use Refinery29\Piston\Middleware\Request\Pagination\PagedPagination;
 
 class RequestPipeline implements StageInterface
 {
@@ -46,6 +47,7 @@ class RequestPipeline implements StageInterface
         $this->builder
             ->add(new IncludedResource())
             ->add(new RequestedFields())
+            ->add(new PagedPagination())
             ->add(new OffsetLimitPagination())
             ->add(new CursorBasedPagination())
             ->add(new Sorts());
