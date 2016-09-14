@@ -16,6 +16,7 @@ use Zend\Diactoros\ServerRequest;
  */
 class Request extends ServerRequest
 {
+    const PAGED_PAGINATION = 'paged';
     const OFFSET_LIMIT_PAGINATION = 'offset_limit';
     const CURSOR_PAGINATION = 'cursor';
 
@@ -391,6 +392,22 @@ class Request extends ServerRequest
     {
         $new = clone $this;
         $new->requestedFields = $requestedFields;
+
+        return $new;
+    }
+
+    /**
+     * @param int $page
+     * @param int $perPage
+     *
+     * @return Request
+     */
+    public function withPageAndPerPage($page, $perPage)
+    {
+        $new = clone $this;
+        $new->offset = ($page - 1) * $perPage;
+        $new->limit = $perPage;
+        $new->paginationType = self::PAGED_PAGINATION;
 
         return $new;
     }
