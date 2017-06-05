@@ -57,6 +57,7 @@
   "prefer-stable": true,
   "config": {
     "bin-dir": "bin",
-    "preferred-install": "dist"
+    "preferred-install": "dist",
+    "sort-packages": true
   }
 }
