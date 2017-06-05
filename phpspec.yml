@@ -4,6 +4,6 @@ suites:
     psr4_prefix: Refinery29\Piston
 
 extensions:
-  - PhpSpec\NyanFormattersExtension\Extension
+  PhpSpec\NyanFormattersExtension\Extension: ~
 
 formatter.name: nyan.cat
