@@ -1,3 +1,5 @@
+.PHONY: composer coverage cs humbug spec test unit
+
 it: cs test
 
 composer:
