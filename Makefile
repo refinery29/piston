@@ -1,8 +1,9 @@
-.PHONY: composer coverage cs humbug spec test unit
+.PHONY: composer coverage cs humbug test
 
 it: cs test
 
 composer:
+	rm -rf composer.lock
 	composer self-update
 	composer validate
 	composer install
@@ -13,13 +14,13 @@ coverage: composer
 cs: composer
 	bin/php-cs-fixer fix --config=.php_cs --verbose --diff
 
-spec: composer
-	bin/phpspec run --config phpspec.yml
-
-test: spec unit
-
-unit: composer
-	bin/phpunit --configuration=test/Unit/phpunit.xml
-
 humbug:
 	bin/humbug
+
+test: composer
+	bin/phpspec run --config phpspec.yml
+	bin/phpunit --configuration=test/Unit/phpunit.xml
+	composer update --prefer-lowest
+	bin/phpspec run --config phpspec.yml
+	bin/phpunit --configuration=test/Unit/phpunit.xml
+
