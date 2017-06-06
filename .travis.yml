@@ -10,7 +10,9 @@ env:
 matrix:
   include:
     - php: 5.6
-      env: WITH_CS=true WITH_COVERAGE=true
+      env: WITH_LOWEST=true
+    - php: 5.6
+      env: WITH_HIGHEST=true WITH_CS=true WITH_COVERAGE=true
 
 cache:
   directories:
@@ -25,7 +27,7 @@ before_install:
   - composer config github-oauth.github.com $GITHUB_TOKEN
 
 install:
-  - composer install
+  - if [[ "$WITH_LOWEST" == "true" ]]; then composer update --prefer-lowest; else composer install; fi
 
 before_script:
   - mkdir -p "$HOME/.php-cs-fixer"
