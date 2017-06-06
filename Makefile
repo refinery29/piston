@@ -3,6 +3,8 @@
 it: cs test
 
 composer:
+	composer self-update
+	composer validate
 	composer install
 
 coverage: composer
