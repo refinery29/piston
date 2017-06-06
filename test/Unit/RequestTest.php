@@ -246,7 +246,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
             ->expects($this->once())
             ->method('get')
             ->willReturnCallback(function ($key) use ($cookies) {
-                if (array_key_exists($key, $cookies)) {
+                if (\array_key_exists($key, $cookies)) {
                     return $cookies[$key];
                 }
             });
@@ -317,7 +317,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($sorts, $request->getSorts());
 
-        foreach (array_keys($sorts) as $sort) {
+        foreach (\array_keys($sorts) as $sort) {
             $this->assertTrue($request->hasSort($sort));
         }
     }

@@ -74,7 +74,7 @@ class PagedPaginationSpec extends ObjectBehavior
     public function it_will_not_allow_previously_paginated_requests(Piston $piston)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 1]);
-        $request->setBeforeCursor(rand());
+        $request->setBeforeCursor(\rand());
 
         $this->shouldThrow(BadRequestException::class)->duringprocess($this->getPayload($request, $piston));
     }

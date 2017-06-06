@@ -97,7 +97,7 @@ class Piston extends RouteCollection implements Middleware\HasMiddleware
      */
     public function map($method, $path, $handler)
     {
-        $path = sprintf('/%s', ltrim($path, '/'));
+        $path = \sprintf('/%s', \ltrim($path, '/'));
 
         $route = (new Route())
             ->setMethods((array) $method)

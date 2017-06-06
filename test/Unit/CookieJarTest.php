@@ -133,7 +133,7 @@ class CookieJarTest extends \PHPUnit_Framework_TestCase
     {
         $cookies = $this->cookies();
 
-        $key = array_rand($cookies, 1);
+        $key = \array_rand($cookies, 1);
 
         $cookieJar = new CookieJar($cookies);
 
@@ -192,7 +192,7 @@ class CookieJarTest extends \PHPUnit_Framework_TestCase
 
         $count = $count ?: $faker->numberBetween(5, 15);
 
-        return array_combine(
+        return \array_combine(
             $faker->words($count),
             $faker->words($count)
         );

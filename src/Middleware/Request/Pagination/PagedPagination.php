@@ -79,7 +79,7 @@ class PagedPagination implements StageInterface
      */
     private function coerceToInteger($param, $param_name)
     {
-        if (is_numeric($param)) {
+        if (\is_numeric($param)) {
             $integer_value = (int) $param;
 
             if ($integer_value == (float) $param) {

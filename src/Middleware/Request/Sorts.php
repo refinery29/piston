@@ -40,7 +40,7 @@ class Sorts implements StageInterface
 
         $this->ensureGetOnlyRequest($request);
 
-        $providedSorts = explode(',', $request->getQueryParams()['sort']);
+        $providedSorts = \explode(',', $request->getQueryParams()['sort']);
 
         if (empty($providedSorts)) {
             return $payload;
@@ -49,12 +49,12 @@ class Sorts implements StageInterface
         $sorts = [];
 
         foreach ($providedSorts as $sort) {
-            if (strlen($sort) <= 0 || $sort === '-') {
+            if (\strlen($sort) <= 0 || $sort === '-') {
                 throw new BadRequestException('Sort parameter cannot be empty.');
             }
 
             if ($sort[0] === '-') {
-                $sorts[substr($sort, 1)] = self::SORT_DESCENDING;
+                $sorts[\substr($sort, 1)] = self::SORT_DESCENDING;
                 continue;
             }
 

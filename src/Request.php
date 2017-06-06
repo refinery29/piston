@@ -293,7 +293,7 @@ class Request extends ServerRequest
      */
     public function hasSort($name)
     {
-        return array_key_exists($name, $this->sorts);
+        return \array_key_exists($name, $this->sorts);
     }
 
     /**
