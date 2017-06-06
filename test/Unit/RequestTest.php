@@ -12,11 +12,11 @@ namespace Refinery29\Piston\Test\Unit;
 use Refinery29\Piston\CookieJar;
 use Refinery29\Piston\Middleware\Request\Sorts;
 use Refinery29\Piston\Request;
-use Refinery29\Test\Util\Faker\GeneratorTrait;
+use Refinery29\Test\Util\TestHelper;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
-    use GeneratorTrait;
+    use TestHelper;
 
     public function testDefaults()
     {
