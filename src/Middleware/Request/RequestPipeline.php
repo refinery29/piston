@@ -34,7 +34,7 @@ class RequestPipeline implements StageInterface
      */
     public function __construct(PipelineBuilder $builder = null)
     {
-        $this->builder = $builder ?:  new PipelineBuilder();
+        $this->builder = $builder ?: new PipelineBuilder();
     }
 
     /**

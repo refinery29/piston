@@ -31,7 +31,7 @@ class SortsSpec extends ObjectBehavior
     {
         /** @var Request $request */
         $request = (new Request())->withQueryParams([
-            'sort' => implode(',', [
+            'sort' => \implode(',', [
                 '-created',
                 'title',
             ]),

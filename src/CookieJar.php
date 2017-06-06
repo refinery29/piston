@@ -23,7 +23,7 @@ class CookieJar
      */
     public function __construct(array $cookies = [])
     {
-        Assertion::allString(array_keys($cookies), 'CookieJar must be instantiated with an associative array');
+        Assertion::allString(\array_keys($cookies), 'CookieJar must be instantiated with an associative array');
 
         $this->cookies = $cookies;
     }
@@ -37,7 +37,7 @@ class CookieJar
     {
         Assertion::string($key);
 
-        if (!array_key_exists($key, $this->cookies)) {
+        if (!\array_key_exists($key, $this->cookies)) {
             return;
         }
 

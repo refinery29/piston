@@ -36,7 +36,7 @@ class RequestedFields implements StageInterface
 
         if ($fields) {
             $this->ensureGetOnlyRequest($request);
-            $fields = explode(',', $fields);
+            $fields = \explode(',', $fields);
         }
 
         if (!empty($fields)) {

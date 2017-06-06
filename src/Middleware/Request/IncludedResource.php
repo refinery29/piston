@@ -31,12 +31,12 @@ class IncludedResource implements StageInterface
             return $payload;
         }
 
-        $include = explode(',', $request->getQueryParams()['include']);
+        $include = \explode(',', $request->getQueryParams()['include']);
 
         if (!empty($include)) {
             foreach ((array) $include as $k => $resource) {
-                if (strpos($resource, '.') !== false) {
-                    $resource = explode('.', $resource);
+                if (\strpos($resource, '.') !== false) {
+                    $resource = \explode('.', $resource);
                     $include[$k] = $resource;
                 }
             }
