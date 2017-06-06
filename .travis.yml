@@ -17,6 +17,10 @@ matrix:
       env: WITH_LOWEST=true
     - php: 7.0
       env: WITH_HIGHEST=true
+    - php: 7.1
+      env: WITH_LOWEST=true
+    - php: 7.1
+      env: WITH_HIGHEST=true
 
 cache:
   directories:
