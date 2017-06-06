@@ -11,11 +11,11 @@ namespace Refinery29\Piston\Test\Unit;
 
 use InvalidArgumentException;
 use Refinery29\Piston\CookieJar;
-use Refinery29\Test\Util\Faker\GeneratorTrait;
+use Refinery29\Test\Util\TestHelper;
 
 class CookieJarTest extends \PHPUnit_Framework_TestCase
 {
-    use GeneratorTrait;
+    use TestHelper;
 
     public function testConstructorRejectsInvalidCookies()
     {
