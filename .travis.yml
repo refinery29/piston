@@ -28,8 +28,7 @@ cache:
     - $HOME/.php-cs-fixer
 
 before_install:
-  - if [[ "$TRAVIS_PULL_REQUEST" == "false" && "$TRAVIS_BRANCH" == "master" ]]; then IS_MERGE_TO_MASTER=true; else IS_MERGE_TO_MASTER=false; fi
-  - if [[ "$WITH_COVERAGE" != "true" && "$IS_MERGE_TO_MASTER" == "false" && "$TRAVIS_PHP_VERSION" != "hhvm" ]]; then phpenv config-rm xdebug.ini; fi
+  - if [[ "$WITH_COVERAGE" != "true" ]]; then phpenv config-rm xdebug.ini; fi
   - composer self-update
   - composer validate
   - composer config github-oauth.github.com $GITHUB_TOKEN
@@ -43,11 +42,11 @@ before_script:
 
 script:
   - bin/phpspec run --format=dot --config=phpspec.yml
-  - if [[ "$WITH_COVERAGE" == "true" && "$IS_MERGE_TO_MASTER" == "true" ]]; then bin/phpunit --configuration=test/Unit/phpunit.xml --coverage-clover=build/logs/clover.xml; else bin/phpunit --configuration=test/Unit/phpunit.xml; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then bin/phpunit --configuration=test/Unit/phpunit.xml --coverage-clover=build/logs/clover.xml; else bin/phpunit --configuration=test/Unit/phpunit.xml; fi
   - if [[ "$WITH_CS" == "true" ]]; then bin/php-cs-fixer fix --config=.php_cs --verbose --diff --dry-run; fi
 
 after_success:
-  - if [[ "$WITH_COVERAGE" == "true" && "$IS_MERGE_TO_MASTER" == "true" ]]; then bin/test-reporter --coverage-report=build/logs/clover.xml; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then bin/test-reporter --coverage-report=build/logs/clover.xml; fi
 
 notifications:
   email: false
