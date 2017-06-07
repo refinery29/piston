@@ -52,8 +52,8 @@ class PagedPagination implements StageInterface
 
         $queryParams = $request->getQueryParams();
 
-        $page = (isset($queryParams['page'])) ? $this->coerceToInteger($queryParams['page'], 'page') : null;
-        $perPage = (isset($queryParams['per-page'])) ? $this->coerceToInteger($queryParams['per-page'], 'per-page') : null;
+        $page = isset($queryParams['page']) ? $this->coerceToInteger($queryParams['page'], 'page') : null;
+        $perPage = isset($queryParams['per-page']) ? $this->coerceToInteger($queryParams['per-page'], 'per-page') : null;
 
         if ($page || $perPage) {
             $this->ensureNotPreviouslyPaginated($request);

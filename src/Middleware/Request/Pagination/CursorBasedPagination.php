@@ -34,8 +34,8 @@ class CursorBasedPagination implements StageInterface
 
         $queryParams = $request->getQueryParams();
 
-        $before = (isset($queryParams['before'])) ? $queryParams['before'] : null;
-        $after = (isset($queryParams['after'])) ? $queryParams['after'] : null;
+        $before = isset($queryParams['before']) ? $queryParams['before'] : null;
+        $after = isset($queryParams['after']) ? $queryParams['after'] : null;
 
         if ($before && $after) {
             throw new BadRequestException('You may not specify both before and after');

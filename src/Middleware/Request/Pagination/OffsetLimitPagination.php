@@ -44,8 +44,8 @@ class OffsetLimitPagination implements StageInterface
 
         $queryParams = $request->getQueryParams();
 
-        $offset = (isset($queryParams['offset'])) ? $this->coerceToInteger($queryParams['offset'], 'offset') : null;
-        $limit = (isset($queryParams['limit'])) ? $this->coerceToInteger($queryParams['limit'], 'limit') : null;
+        $offset = isset($queryParams['offset']) ? $this->coerceToInteger($queryParams['offset'], 'offset') : null;
+        $limit = isset($queryParams['limit']) ? $this->coerceToInteger($queryParams['limit'], 'limit') : null;
 
         if ($offset || $limit) {
             $this->ensureNotPreviouslyPaginated($request);
