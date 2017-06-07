@@ -21,7 +21,7 @@ class FooController
         return $resp;
     }
 
-    public function test(Request $req, ApiResponse $response)
+    public function test(Request $req, ApiResponse $response, array $vars)
     {
         $response->setResult(ResourceFactory::result(['something' => 'yolo']));
 
