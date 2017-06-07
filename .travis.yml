@@ -28,7 +28,8 @@ cache:
     - $HOME/.php-cs-fixer
 
 before_install:
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then phpenv config-rm xdebug.ini; fi
+  - source .travis/xdebug.sh
+  - xdebug-disable
   - composer self-update
   - composer validate
   - composer config github-oauth.github.com $GITHUB_TOKEN
@@ -42,7 +43,9 @@ before_script:
 
 script:
   - vendor/bin/phpspec run --format=dot --config=phpspec.yml
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then xdebug-enable; fi
   - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/phpunit --configuration=test/Unit/phpunit.xml --coverage-clover=build/logs/clover.xml; else vendor/bin/phpunit --configuration=test/Unit/phpunit.xml; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then xdebug-disable; fi
   - if [[ "$WITH_CS" == "true" ]]; then vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --diff --dry-run; fi
 
 after_success:
