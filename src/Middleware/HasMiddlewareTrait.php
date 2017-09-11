@@ -29,7 +29,7 @@ trait HasMiddlewareTrait
      *
      * @return $this
      */
-    public function addMiddleware(StageInterface $stage)
+    public function addMiddleware($stage)
     {
         $this->pipeline = $this->getPipeline()->pipe($stage);
 

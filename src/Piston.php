@@ -181,7 +181,7 @@ class Piston extends RouteCollection implements Middleware\HasMiddleware
     private function loadContainer()
     {
         $payload = (new Middleware\Request\RequestPipeline())
-            ->process($this->buildPayload());
+            ->__invoke($this->buildPayload());
 
         $this->request = $payload->getRequest();
         $this->response = $payload->getResponse();

@@ -22,7 +22,7 @@ class IncludedResource implements StageInterface
      *
      * @return Payload
      */
-    public function process($payload)
+    public function __invoke($payload)
     {
         /** @var Request $request */
         $request = $payload->getRequest();

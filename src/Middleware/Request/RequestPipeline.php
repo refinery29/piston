@@ -42,7 +42,7 @@ class RequestPipeline implements StageInterface
      *
      * @return Payload
      */
-    public function process($payload)
+    public function __invoke($payload)
     {
         $this->builder
             ->add(new IncludedResource())

@@ -37,7 +37,7 @@ class SortsSpec extends ObjectBehavior
             ]),
         ]);
 
-        $result = $this->process(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
+        $result = $this->__invoke(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
 
         $result->shouldHaveType(Request::class);
 
@@ -48,7 +48,7 @@ class SortsSpec extends ObjectBehavior
 
     public function it_does_not_throw_exception_with_no_sort(Piston $middleware)
     {
-        $result = $this->process(new Payload(
+        $result = $this->__invoke(new Payload(
             $middleware->getWrappedObject(),
             new Request(),
             new ApiResponse()
@@ -64,7 +64,7 @@ class SortsSpec extends ObjectBehavior
 
         $payload = new Payload($middleware->getWrappedObject(), $request, new ApiResponse());
 
-        $this->shouldThrow(BadRequestException::class)->duringProcess($payload);
+        $this->shouldThrow(BadRequestException::class)->during__Invoke($payload);
     }
 
     public function it_throws_exception_on_empty_descending_sort(Piston $middleware)
@@ -74,7 +74,7 @@ class SortsSpec extends ObjectBehavior
 
         $payload = new Payload($middleware->getWrappedObject(), $request, new ApiResponse());
 
-        $this->shouldThrow(BadRequestException::class)->duringProcess($payload);
+        $this->shouldThrow(BadRequestException::class)->during__Invoke($payload);
     }
 
     public function it_throws_exception_on_empty_sort_name_with_valid_sort_name(Piston $middleware)
@@ -84,7 +84,7 @@ class SortsSpec extends ObjectBehavior
 
         $payload = new Payload($middleware->getWrappedObject(), $request, new ApiResponse());
 
-        $this->shouldThrow(BadRequestException::class)->duringProcess($payload);
+        $this->shouldThrow(BadRequestException::class)->during__Invoke($payload);
     }
 
     public function it_does_not_ensure_get_only_request_when_no_sorts_are_included(Piston $middleware)
@@ -92,7 +92,7 @@ class SortsSpec extends ObjectBehavior
         /** @var Request $request */
         $request = (new Request())->withMethod('PATCH');
 
-        $result = $this->process(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
+        $result = $this->__invoke(new Payload($middleware->getWrappedObject(), $request, new ApiResponse()))->getRequest();
 
         $result->shouldHaveType(Request::class);
     }
@@ -104,6 +104,6 @@ class SortsSpec extends ObjectBehavior
 
         $payload = new Payload($middleware->getWrappedObject(), $request, new ApiResponse());
 
-        $this->shouldThrow(BadRequestException::class)->duringProcess($payload);
+        $this->shouldThrow(BadRequestException::class)->during__Invoke($payload);
     }
 }

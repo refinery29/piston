@@ -32,20 +32,20 @@ class CursorBasedPaginationSpec extends ObjectBehavior
     {
         $request = RequestFactory::fromGlobals()->withMethod('PUT')->withQueryParams(['before' => 123]);
 
-        $this->shouldThrow(BadRequestException::class)->during('process', [$this->getPayload($request, $middleware)]);
+        $this->shouldThrow(BadRequestException::class)->during('__invoke', [$this->getPayload($request, $middleware)]);
     }
 
     public function it_will_not_allow_before_an_after(Piston $middleware)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['before' => 123, 'after' => 456]);
 
-        $this->shouldThrow(BadRequestException::class)->during('process', [$this->getPayload($request, $middleware)]);
+        $this->shouldThrow(BadRequestException::class)->during('__invoke', [$this->getPayload($request, $middleware)]);
     }
 
     public function it_will_allow_before_cursor_on_get_requests(Piston $middleware)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['before' => 123]);
-        $this->process($this->getPayload($request, $middleware))
+        $this->__invoke($this->getPayload($request, $middleware))
             ->getRequest()
             ->getPaginationCursor()->shouldReturn(['before' => 123]);
     }
@@ -53,7 +53,7 @@ class CursorBasedPaginationSpec extends ObjectBehavior
     public function it_will_allow_after_cursor_on_get_requests(Piston $middleware)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['after' => 123]);
-        $this->process($this->getPayload($request, $middleware))
+        $this->__invoke($this->getPayload($request, $middleware))
             ->getRequest()
             ->getPaginationCursor()->shouldReturn(['after' => 123]);
     }
@@ -62,7 +62,7 @@ class CursorBasedPaginationSpec extends ObjectBehavior
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['before' => 123]);
 
-        $response = $this->process($this->getPayload($request, $middleware));
+        $response = $this->__invoke($this->getPayload($request, $middleware));
         $response->shouldHaveType(Payload::class);
         $response->getRequest()->shouldBeAnInstanceOf(Request::class);
     }
@@ -72,7 +72,7 @@ class CursorBasedPaginationSpec extends ObjectBehavior
         $request = RequestFactory::fromGlobals()->withQueryParams(['before' => 123]);
         $request->setOffsetLimit(10, 10);
 
-        $this->shouldThrow(BadRequestException::class)->duringprocess($this->getPayload($request, $middleware));
+        $this->shouldThrow(BadRequestException::class)->during__Invoke($this->getPayload($request, $middleware));
     }
 
     private function getPayload($request, Piston $middleware)
