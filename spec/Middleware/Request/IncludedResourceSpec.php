@@ -30,8 +30,11 @@ class IncludedResourceSpec extends ObjectBehavior
     {
         /** @var Request $request */
         $request = (new Request())->withQueryParams(['include' => 'foo,bar,baz']);
-        $result = $this->process(new Payload($middleware->getWrappedObject(),
-            $request, new ApiResponse()))->getRequest();
+        $result = $this->process(new Payload(
+            $middleware->getWrappedObject(),
+            $request,
+            new ApiResponse()
+        ))->getRequest();
 
         $result->shouldHaveType(Request::class);
 
@@ -48,8 +51,11 @@ class IncludedResourceSpec extends ObjectBehavior
         /** @var Request $request */
         $request = (new Request())->withQueryParams(['include' => 'foo.bing,bar,baz']);
 
-        $result = $this->process(new Payload($middleware->getWrappedObject(),
-            $request, new ApiResponse()))->getRequest();
+        $result = $this->process(new Payload(
+            $middleware->getWrappedObject(),
+            $request,
+            new ApiResponse()
+        ))->getRequest();
 
         $result->shouldHaveType(Request::class);
 
