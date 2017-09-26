@@ -34,10 +34,9 @@
   },
   "require-dev": {
     "codeclimate/php-test-reporter": "0.4.4",
-    "humbug/humbug": "^1.0.0-alpha1",
     "phpspec/nyan-formatters": "^2.0.0",
     "phpspec/phpspec": "^3.4.0",
-    "phpunit/phpunit": "^5.7.20",
+    "phpunit/phpunit": "^5.7.22",
     "refinery29/php-cs-fixer-config": "0.10.1",
     "refinery29/test-util": "0.11.4"
   },

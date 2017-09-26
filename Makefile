@@ -1,4 +1,4 @@
-.PHONY: composer coverage cs humbug test
+.PHONY: composer coverage cs test
 
 it: cs test
 
@@ -13,9 +13,6 @@ coverage: composer
 
 cs: composer
 	vendor/bin/php-cs-fixer fix --config=.php_cs --verbose --diff
-
-humbug:
-	vendor/bin/humbug
 
 test: composer
 	vendor/bin/phpspec run --config phpspec.yml
