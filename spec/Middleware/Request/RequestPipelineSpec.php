@@ -32,6 +32,6 @@ class RequestPipelineSpec extends ObjectBehavior
         $response = new ApiResponse();
         $subject = new Payload($middleware->getWrappedObject(), $request, $response);
 
-        $this->process($subject)->shouldHaveType(Payload::class);
+        $this->__invoke($subject)->shouldHaveType(Payload::class);
     }
 }

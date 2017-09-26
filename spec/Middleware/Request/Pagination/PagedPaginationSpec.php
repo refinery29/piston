@@ -29,7 +29,7 @@ class PagedPaginationSpec extends ObjectBehavior
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 2, 'per-page' => 10]);
 
-        $response = $this->process($this->getPayload($request, $piston));
+        $response = $this->__invoke($this->getPayload($request, $piston));
         $response->shouldHaveType(Payload::class);
         $response->getRequest()->shouldBeAnInstanceOf(Request::class);
     }
@@ -37,7 +37,7 @@ class PagedPaginationSpec extends ObjectBehavior
     public function it_assigns_per_page_to_request_as_integer(Piston $piston)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 2, 'per-page' => '5']);
-        $request = $this->process($this->getPayload($request, $piston));
+        $request = $this->__invoke($this->getPayload($request, $piston));
 
         $request->getRequest()->getOffsetLimit()->shouldBe(['offset' => 5, 'limit' => 5]);
     }
@@ -45,7 +45,7 @@ class PagedPaginationSpec extends ObjectBehavior
     public function it_assigns_default_per_page_of_ten_when_none_given(Piston $piston)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 3]);
-        $request = $this->process($this->getPayload($request, $piston));
+        $request = $this->__invoke($this->getPayload($request, $piston));
 
         $request->getRequest()->getOffsetLimit()->shouldBe(['offset' => 20, 'limit' => 10]);
     }
@@ -53,7 +53,7 @@ class PagedPaginationSpec extends ObjectBehavior
     public function it_assigns_default_page_of_one_when_none_given(Piston $piston)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['per-page' => 5]);
-        $request = $this->process($this->getPayload($request, $piston));
+        $request = $this->__invoke($this->getPayload($request, $piston));
 
         $request->getRequest()->getOffsetLimit()->shouldBe(['offset' => 0, 'limit' => 5]);
     }
@@ -62,13 +62,13 @@ class PagedPaginationSpec extends ObjectBehavior
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 'foo', 'per-page' => 10]);
 
-        $this->shouldThrow(BadRequestException::class)->during('process', [$this->getPayload($request, $piston)]);
+        $this->shouldThrow(BadRequestException::class)->during('__invoke', [$this->getPayload($request, $piston)]);
     }
 
     public function it_throws_if_per_page_is_not_numeric(Piston $piston)
     {
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 2, 'per-page' => 'foo']);
-        $this->shouldThrow(BadRequestException::class)->during('process', [$this->getPayload($request, $piston)]);
+        $this->shouldThrow(BadRequestException::class)->during('__invoke', [$this->getPayload($request, $piston)]);
     }
 
     public function it_will_not_allow_previously_paginated_requests(Piston $piston)
@@ -76,7 +76,7 @@ class PagedPaginationSpec extends ObjectBehavior
         $request = RequestFactory::fromGlobals()->withQueryParams(['page' => 1]);
         $request->setBeforeCursor(\rand());
 
-        $this->shouldThrow(BadRequestException::class)->duringprocess($this->getPayload($request, $piston));
+        $this->shouldThrow(BadRequestException::class)->during__Invoke($this->getPayload($request, $piston));
     }
 
     private function getPayload($request, Piston $piston)

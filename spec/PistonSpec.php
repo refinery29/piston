@@ -11,7 +11,6 @@ namespace spec\Refinery29\Piston;
 
 use League\Container\Container;
 use League\Container\ServiceProvider;
-use League\Pipeline\CallableStage;
 use League\Pipeline\Pipeline;
 use League\Pipeline\StageInterface;
 use League\Route\Http\Exception\NotFoundException;
@@ -159,9 +158,9 @@ class PistonSpec extends ObjectBehavior
 
     public function it_can_register_and_catch_exceptions()
     {
-        $this->addMiddleware(CallableStage::forCallable(function () {
+        $this->addMiddleware(function () {
             throw new TestException('How now, Brown Cow?');
-        }));
+        });
 
         $this->registerException(TestException::class, function (Piston $app, \Exception $exception) {
             return $exception->getMessage();
@@ -185,9 +184,9 @@ class PistonSpec extends ObjectBehavior
         $emitter = new PassThroughEmitter();
         $this->beConstructedWith(null, null, $emitter);
 
-        $this->addMiddleware(CallableStage::forCallable(function () {
+        $this->addMiddleware(function () {
             throw new TestException();
-        }));
+        });
 
         $this->registerException(TestException::class, function () {
             return $this->getErrorResponse(300);
@@ -204,9 +203,9 @@ class PistonSpec extends ObjectBehavior
         $emitter = new PassThroughEmitter();
         $this->beConstructedWith(null, null, $emitter);
 
-        $this->addMiddleware(CallableStage::forCallable(function () {
+        $this->addMiddleware(function () {
             throw new TestException();
-        }));
+        });
 
         $this->registerException(TestException::class, function () {
             return $this->getErrorResponse(300, "I'm blue da ba dee");
@@ -220,9 +219,9 @@ class PistonSpec extends ObjectBehavior
 
     public function it_rethrows_uncaught_exceptions()
     {
-        $this->addMiddleware(CallableStage::forCallable(function () {
+        $this->addMiddleware(function () {
             throw new TestException();
-        }));
+        });
 
         $this->shouldThrow(TestException::class)->duringLaunch();
     }
@@ -236,9 +235,9 @@ class PistonSpec extends ObjectBehavior
 
         $response->getStatusCode()->shouldReturn(404);
 
-        $this->addMiddleware(CallableStage::forCallable(function () {
+        $this->addMiddleware(function () {
             throw new NotFoundException();
-        }));
+        });
 
         $this->registerException(NotFoundException::class, function () {
             return 'How now, Brown Cow?';

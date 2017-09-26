@@ -32,7 +32,7 @@ class RequestedFieldsSpec extends ObjectBehavior
 
         $subject = new Payload($middleware->getWrappedObject(), $request, new ApiResponse());
 
-        $result = $this->process($subject);
+        $result = $this->__invoke($subject);
         $result = $result->getRequest();
 
         $resources = $result->getRequestedFields();
