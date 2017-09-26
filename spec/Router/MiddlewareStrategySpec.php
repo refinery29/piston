@@ -47,7 +47,10 @@ class MiddlewareStrategySpec extends ObjectBehavior
             ->setRequest($request);
 
         $this->dispatch(
-            [$foo, 'test'], [], $route)->shouldHaveType(ApiResponse::class);
+            [$foo, 'test'],
+            [],
+            $route
+        )->shouldHaveType(ApiResponse::class);
     }
 
     public function it_handles_group_middleware(RouteGroup $group, Route $route, FooController $foo, Request $request, ApiResponse $response)
@@ -65,7 +68,10 @@ class MiddlewareStrategySpec extends ObjectBehavior
         $this->getResponse()->shouldReturn($response);
 
         $this->dispatch(
-            [$foo, 'test'], [], $route);
+            [$foo, 'test'],
+            [],
+            $route
+        );
     }
 
     public function it_handles_route_middleware(Route $route, FooController $foo, Request $request, ApiResponse $response)
@@ -81,6 +87,9 @@ class MiddlewareStrategySpec extends ObjectBehavior
         $this->getResponse()->shouldReturn($response);
 
         $this->dispatch(
-            [$foo, 'test'], [], $route);
+            [$foo, 'test'],
+            [],
+            $route
+        );
     }
 }

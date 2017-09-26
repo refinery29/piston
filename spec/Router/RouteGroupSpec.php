@@ -27,7 +27,8 @@ class RouteGroupSpec extends ObjectBehavior
             '/yolo',
             function ($router) {
             },
-            new RouteCollection());
+            new RouteCollection()
+        );
     }
 
     public function it_is_initializable()
