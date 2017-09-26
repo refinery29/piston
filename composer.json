@@ -6,22 +6,6 @@
     {
       "name": "Refinery29",
       "email": "p.e@refinery29.com"
-    },
-    {
-      "name": "Kayla Daniels",
-      "email": "kayla.daniels@refinery29.com"
-    },
-    {
-      "name": "Andreas Möller",
-      "email": "andreas.moller@refinery29.com"
-    },
-    {
-      "name": "Ryan Catlin",
-      "email": "ryan.catlin@refinery29.com"
-    },
-    {
-      "name": "Matthew Setter",
-      "email": "matthew.setter@refinery29.com"
     }
   ],
   "require": {
